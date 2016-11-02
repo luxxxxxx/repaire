@@ -1,0 +1,36 @@
+#main {
+  position: relative;
+  width: 10rem;
+  height: 13.66666667rem;
+}
+#main .setting {
+  position: absolute;
+  top: 0.46666667rem;
+  right: 1.13333333rem;
+  width: 0.61333333rem;
+  height: 0.45333333rem;
+  border: 1px solid black;
+  background: #ff0000;
+}
+#main .setting .bar {
+  width: 0.50666667rem;
+  height: 0.10666667rem;
+  margin-bottom: 0.06666667rem;
+  background: white;
+  border-radius: 0.04rem;
+}
+#main .setting .bar:nth-child(2) {
+  width: 0.61333333rem;
+}
+#main {
+  background: url('../img/mainBg.png') no-repeat center top;
+  background-size: cover;
+}
+#main h2 {
+  font-size: 0.53333333rem;
+  color: white;
+}
+#main h1 {
+  font-size: 0.53333333rem;
+  color: white;
+}
