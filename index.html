@@ -11,13 +11,109 @@
 	<link rel="stylesheet" type="text/css" href="./css/index.css" />
 </head>
 <body>
-	<div id="main">
+	<div id="main" class="noBinding">  <!-- noBinding 未绑定-->
 		<div class="setting">
 			<div class="bar"></div>
 			<div class="bar"></div>
 			<div class="bar n-margin-b"></div>
 		</div>
-		<h2>hi,亲爱的</h2>
+		<div id="bg">
+			<img src="./img/mainBg.png">
+		</div>
+		<div class="btnsCon">
+			<div class="btn bxcx">
+				报修/查询
+			</div>
+			<div class="btn bxcx n-margin-t">建议/投诉</div>
+		</div>
+		<div class="mask"></div>
 	</div>
-</body>
+	<div id="noBind">
+		<i class="close"></i>
+		<h2>你还没有绑定小帮手哦~</h2>
+		<div class="btn">绑定</div>
+	</div>
+	</body>
+	<div id="settingCon">
+		<div class="topBg"></div>
+		<div class="selectBar">
+			<p>消息推送</p>
+			<div class="changeBtn">
+				<div class="o"></div>
+			</div>
+		</div>
+		<div class="bottomCon">
+			<p>说明</p>
+			<p>Bug反馈：红岩网校产品交流群（164126675）</p>
+			<div class="btn back">返回</div>
+		</div>
+	</div>
 </html>
+<script type="text/javascript" src = './js/pack-0.5.js'></script>
+<script type="text/javascript">
+	var winH = window.innerHeight,
+	winW = window.innerWidth,  
+	main = $$('#main'),  
+	firstArea = $$('#bg'),  //第一块区域
+	secondArea = $$('.btnsCon'),   //第二块区域*/
+	bxcx = $$('.bxcx'),  //报修查询按钮
+	extraArea = $$('#noBind');
+	var resetSize = function () {//初始化浏览器窗口大小
+		winH = window.innerHeight;
+		winW = window.innerWidth;
+			// rate = 720/485; //第一部分闭上第二部分的比例
+		    /*适应宽屏幕手机*/
+		main.style.width = winW + 'px';
+		firstArea.style.height = winH/(720 + 485) * 720 + 'px';
+		secondArea.style.height = winH - getIntStyle(firstArea,'height') + 'px';
+		extraArea.style.top = winH * (310/1200) + 'px';
+	}
+	resetSize();
+	window.onresize = resetSize;
+	
+
+	(function () {
+		var closeBtn = $$('#noBind .close'),
+			main = $$('#main'),
+			changeBtn = $$('.changeBtn'),
+			o = changeBtn.querySelector('.o'),
+			settingBtn = $$('#main .setting'),
+			winWidth = getWinWidth();
+			winHeight = getWinHeight();
+			backNormal = $$('#settingCon .back');
+		on(changeBtn,'click',function(){
+			toggleClass(o,'r')
+		});
+		on(closeBtn,'click',function(){  //没有绑定弹框里面叉叉
+			removeClass(main,'noBinding');
+		});
+		on(settingBtn,'click',function(){  //设置
+			addClass(main,'setting');
+		})
+		on(backNormal,'click',function(){  //设置里面返回按钮
+			removeClass(main,'setting');
+		})
+		for (var i = 0; i < bxcx.length; i++) {
+			bxcx[i].onOff = true;
+		}
+		on(bxcx,'click',function () {
+			var This = this;
+			if (this.onOff) {
+				this.onOff = false;  //定义开关  如果正在发送请求中的话就拒绝再次发送请求 直到请求结束
+				ajax({
+				'method' : 'GET',
+				'url' : 'https://e39f932a.ngrok.io/repair/index.php?c=baoxiu&a=checkStatus',
+				'success' : function (data) {
+					console.log(Json.parse('http://192.168.199.243/repair/index.php?c=baoxiu&a=checkStatus'))
+					This.onOff = true;
+				},
+				'error' : function () {
+					// alert(data);
+					alert('error');
+					This.onOff = true;
+				}
+				})
+			}
+		})
+	})()
+</script>

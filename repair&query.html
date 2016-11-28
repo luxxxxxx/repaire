@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+	<title>报修</title>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/repair&query.css">
+	<script type="text/javascript">
+	!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+	</script>
+</head>
+<body>
+	<div id="main">
+		<div class="topCon">
+			<div class="content"> 
+				<p>奔跑的萌新</p>
+				<div class="btn" id="repairBtn">我要报修</div>
+			</div>
+		</div>
+		<div class="sltCon clearfix">
+			<div class=" l slt select">已完成</div>
+			<div class="r slt">待解决</div>
+		</div>
+		<div id="content" class="">  <!-- class: noInfo  如果没有信息就增加这个class-->
+			<div class="noContent">  
+				<div class="icon"></div>
+				<p>你还没有报修过噢</p>
+			</div>
+			<ul class="finished mainContent"><!-- 主页面下面已完成 和待解决 按钮 -->
+				<li>
+					<p>修空调</p>
+					<div class="status">
+						<div class="t">
+							<i></i>
+							<p>已完成</p>
+						</div>
+						<div class="time">2016年9月24日</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="waittosolve mainContent" style="display: none;">  <!-- 主页面下面已完成 和待解决 按钮 -->
+				<li>
+					<p>修空调</p>
+					<div class="status">
+						<div class="t">
+							<i></i>
+							<p>处理中</p>
+						</div>
+						<div class="time">2016年9月24日</div>
+					</div>
+				</li>
+				<li>
+					<p>修空调</p>
+					<div class="status">
+						<div class="t">
+							<i></i>
+							<p>处理中</p>
+						</div>
+						<div class="time">2016年9月24日</div>
+					</div>
+					
+				</li><li>
+					<p>修空调</p>
+					<div class="status">
+						<div class="t">
+							<i></i>
+							<p>处理中</p>
+						</div>
+						<div class="time">2016年9月24日</div>
+					</div>
+				</li><li>
+					<p>修空调</p>
+					<div class="status">
+						<div class="t">
+							<i></i>
+							<p>处理中</p>
+						</div>
+						<div class="time">2016年9月24日</div>
+					</div>
+					
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="processing" class="process-finished none">  <!-- none -->
+		<div class="hint">
+			<i></i>
+			<span>工作人员正在前往修理的路上……</span>
+		</div>
+		<div class="main">
+			<ul>
+				<li>
+					<i class="icon icon1"></i>
+					<p class="t">申报人</p>
+					<p class="info">奔跑的萌新</p>
+				</li>
+				<li>
+					<i class="icon icon2"></i>
+					<p class="t">电话</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<li>
+					<i class="icon icon3"></i>
+					<p class="t">详细地址</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<li>
+					<i class="icon icon4"></i>
+					<p class="t">标题</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<div id="desc" class="desc">
+					我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，
+				</div>
+				<div class="spread"><span>展开</span><i class="arrowDown"></i></div>
+			</ul>
+			<div class="picCon">
+				<img class="pic" src="./img/demo.jpg">
+			<div class ="return">返回</div>
+			</div>
+		</div>
+	</div>
+	<div id="finished" class="process-finished none">  <!-- none -->
+		<div class="main">
+			<ul>
+				<li>
+					<i class="icon icon1"></i>
+					<p class="t">申报人</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<li>
+					<i class="icon icon2"></i>
+					<p class="t">电话</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<li>
+					<i class="icon icon3"></i>
+					<p class="t">详细地址</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<li>
+					<i class="icon icon4"></i>
+					<p class="t">标题</p>
+					<p class="info">学生公寓区 宁静苑4舍</p>
+				</li>
+				<div id="desc" class="desc">
+					我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，
+				</div>
+				<div class="spread"><span>展开</span><i class="arrowDown"></i></div>
+			</ul>
+			<div class="picCon">
+				<img class="pic" src="./img/demo.jpg">
+			<!-- <div class ="submit">返回</div> -->
+			</div>
+			<!-- <div class="response">
+				<div class="t"><i></i></div>
+			</div>
+-->		</div>
+		<div class="response">
+			<div class="t">
+				<i class="icon"></i>
+				<p>情况反馈</p>
+				<div class="satisfy clearfix">
+					<span>满意度:</span> 
+					<div class="starBox clearfix">
+						<div class="star fill"></div>
+						<div class="star fill"></div>
+						<div class="star fill"></div>
+						<div class="star"></div>
+						<div class="star n-margin-r"></div>
+					</div>
+				</div>
+			</div>
+			<form>
+				<div class="textCon">
+					<textarea placeholder="请在这里输入详细反馈，二百字以内哦~"></textarea>
+				</div>
+				<div class="submitBtn">提交</div>
+			</form>
+		</div>
+	</div>
+	<div id="repair" style="display: none;">
+		<div class="topCon">
+			<div class="info">
+				<i class="icon icons icon1"></i><span class="event Name">申报人</span>
+				<span class="middle name">奔跑的萌新</span>
+				<i class="icon right lock"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon2"></i><span class="event Phone">电话</span>
+				<input type="phone" class="text" name="phone" placeholder="请输入常用的手机号码">
+			</div>
+			<div class="info">
+				<i class="icon icons icon3"></i><span class="event Type">服务类型</span>
+				<span class="middle slt">点击选择分类</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon4"></i><span class="event Project">服务项目</span>
+				<span class="middle slt">点击选择分类</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon5"></i><span class="event Project"></span>
+				<span class="middle slt">点击请选择服务项目</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon6"></i><span class="event Address">详细地址</span>
+				<span class="middle slt">请选择区域</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon7"></i><span class="event Project"></span>
+				<input type="phone" class="text" name="phone" placeholder="请输入十个字以内的地址">
+				<i class="icon right"></i>
+			</div>
+		</div>
+		<div class="bottomCon">
+			<div class="info clearfix">
+				<i class="icon left"></i>
+				<p class="t">标题</p>
+				<input class="text" type="text" name="title" placeholder="请输入十个字以内">
+			</div>
+			<hr />
+			<textarea maxlength="200" class="text area" placeholder="请在这里输入详细描述，二百字以内哦~"></textarea>
+			<div class="uploadPicCon clearfix">
+				<div class="pic"><img src="./img/demo.jpg"></div>
+				<div class="pic upload"><img src="./img/camera.jpg"></div>
+			</div>
+			<hr class="n-margin" /> 
+			<div class="submitBtn">提交</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript">
+
+		var winH = getWinHeight(),
+		winW = getWinWidth(),
+		main = $$('#main'), 
+		body = $$('body'),
+		firstArea = $$('#main .topCon'),  //第一块区域
+		secondArea = $$('#main .sltCon'),   //第二块区域*/
+		extraArea = $$('#content'),
+		processingPage = $$('.process-finished'),
+		MainContent = $$('.process-finished > .main'),
+		stars = $$('.star'),
+		hint = $$('.process-finished .hint');
+		var resetSize = function () {//初始化浏览器窗口大小
+			winH = getWinHeight(),
+			winW = getWinWidth();
+				// rate = 720/485; //第一部分闭上第二部分的比例
+			    /*适应宽屏幕手机*/
+			main.style.width = winW + 'px';
+			//主要部分main 高度
+				MainContent[0].style.height = (winH - getIntStyle(hint,'height') - getIntStyle(hint,'marginBottom')) + 'px';
+				// MainContent[1].style.height = winH + 'px';
+			firstArea.style.height = winH/1205 * 468 + 'px';
+			extraArea.style.height = (winH - getIntStyle(firstArea,'height') - secondArea.offsetHeight ) + 'px';
+		}
+		resetSize();
+		window.onresize = resetSize;
+	(function(){
+ 		var winH = window.innerHeight,
+		    winW = window.innerWidth,
+		    main = $$('#main'),
+		    spreadBtn = $$('.spread'),  //收起展开 按钮
+		    desc = $$('.desc'),   //描述内容
+		    firstArea = $$('#main > .topCon'),
+		    returnBtn = $$('.return'),  //返回按钮
+		    secondArea = $$('#main > .sltCon'),
+		    mainContents = $$('.mainContent'),
+		    repairBtn = $$('#repairBtn'),  //我要报修按钮
+		    repairPage = $$('#repair'),
+		    slts = $$('.sltCon .slt'),  // 已完成和 待解决 两个按钮
+		    finishedList = $$('#content > ul.finished.mainContent li'),  //已完成下拉列表所有li
+		    waittosolveList = $$('#content > ul.waittosolve.mainContent li'), //待解决下拉列表所有li
+		    processingPage = $$('#processing'),  //正在處理中頁面
+		    finishedPage = $$('#finished'),  //已經完成頁面 
+		    repairSubmitBtn = $$('#repair .submitBtn'),  //报修页面 里面提交按钮
+		    content = $$('#content'); 
+		   	console.log(repairSubmitBtn);
+		// main.style.height = winH + 'px';
+		// main.style.width = winW + 'px';
+		// content.style.height = winH - getIntStyle(firstArea,'height') - secondArea.offsetHeight + 'px';
+		on(slts,'click',function(){   /*点击选项卡事件*/
+			removeClass(slts,'select');
+			addClass(this,'select');
+			for (var i = 0; i < mainContents.length; i++) {
+				mainContents[i].style.display = 'none';
+	 			mainContents[this.index].style.display = 'block';
+	 		}
+		})
+		on (spreadBtn,'click', function () {  /*收起展开按钮按下事件*/	
+			toggleClass(desc,'slideDown');
+		})
+		on (returnBtn,'click', function () {
+			addClass(processingPage,'none');
+		})
+		on (repairBtn, 'click', function(){  //我要报修按钮点击后  打开我要报修页面 
+			repairPage.style.display = 'block';
+		})
+		on (repairSubmitBtn, 'click', function () {
+			repairPage.style.display = 'none';
+		})
+
+		for (var i = 0; i < stars.length; i++) {
+			stars[i].index = i;
+		}
+		on(stars,'click',function () {
+			giveStar(this.index);
+		})
+		function giveStar (index) {
+			var l = stars.length;
+			for (var i = 0; i < l; i++) {
+				removeClass(stars[i],'fill');
+			}
+			for (var j = 0; j <= index; j++) {
+				addClass(stars[j],'fill');
+			}
+		}
+	})()
+</script>

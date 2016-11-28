@@ -2,7 +2,7 @@
 #main {
 	position: relative; 
 	width: 10rem;
-	height: 1025/75rem;
+	background: #fff;
 }
 #main .setting {
 	position: absolute;
@@ -10,8 +10,6 @@
 	right: 85/75rem;
 	width: 46/75rem;
 	height: 34/75rem;
-	border: 1px solid black; 
-	background: red
 }
 #main .setting .bar {
 	width: 38/75rem;
@@ -23,15 +21,172 @@
 #main .setting .bar:nth-child(2) {
 	width: 46/75rem;
 }
-#main {
-	background: url('../img/mainBg.png') no-repeat center top;
+#main.noBinding {
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	-o-filter: blur(3px);
+	-ms-filter: blur(3px);
+	filter: blur(3px);
+}
+#main #bg {
+	height: 720/75rem;
+}
+#main #bg img {
+	width: 100%;
+	height: 100%;
+}
+#main .btnsCon {
+	position: relative;
+	height: 485/75rem;
+	overflow: hidden;
+}
+.btn {
+	width: 355/75rem;
+	height: 85/75rem;
+	margin: 85/75rem auto 90/75rem;
+	border-radius: 85/2/75rem;
+	text-align: center;
+	line-height: 85/75rem;
+	color: #fff;
+	font-size: 40/75rem;
+	font-family: '[PingFang]';
+	box-shadow: 5/75rem 10/75rem 15/75rem rgba(88,197,203,.2);
+	background: -webkit-linear-gradient(left,rgba(88,197,203,1) , rgba(107,227,163,1)); /* Safari  5.1 - 6.0 */
+	background: -o-linear-gradient(right, rgba(88,197,203,1) , rgba(107,227,163,1)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(right, rgba(88,197,203,1) , rgba(107,227,163,1)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, rgba(88,197,203,1) , rgba(107,227,163,1)); /* 标准的语法 */
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		color: #fff;
+	}
+}
+#main .mask {
+	display: none;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	background-color: rgba(0,0,0,.38);
+}
+#main.noBinding .mask {
+	display: block;
+}
+#noBind {
+	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 310/75rem;
+	width: 550/75rem;
+	height: 450/75rem;
+	margin: 0 auto;
+	border-radius: 8/75rem;
+	background: white;
+	padding: 27/75rem;
+	box-sizing: border-box;
+	font-family: '[PingFang]';
+}
+#main.noBinding + #noBind {
+	display: block !important;
+}
+#noBind h2 {
+	margin-top: 90/75rem;
+	text-align: center;
+	color: #000;
+	font-size: 32/75rem;
+	font-weight: normal;
+}
+#noBind .close {
+	display: block;
+	width: 28/75rem;
+	height: 28/75rem;
+	background: url(../img/close.png) no-repeat center;
+	background-size: cover;
+	float: right;
+}
+#noBind .btn {
+	letter-spacing: 10px;
+}
+#settingCon {
+	display: none;
+	top: 0;
+	left: 0;
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: white;
+}
+#main.setting + #settingCon {
+	display: block;
+}
+#settingCon .topBg {
+	height: 320/12.06%;
+	background: lightskyblue;
+	background: url('../img/topBg.png') no-repeat center center;
 	background-size: cover;
 }
-#main h2 {
-	font-size: 40/75rem;
-	color: white;
+#settingCon .selectBar {
+	height: 110/75rem;
+	padding: 22/75rem 37/75rem;
+	box-shadow: 0 3/75rem 5/75rem rgba(0,0,0,.1);
+	box-sizing: border-box;
 }
-#main h1 {
-	font-size: 40/75rem;
-	color: white;
+#settingCon .selectBar p {
+	float: left;
+	display: block;
+	line-height: 70/75rem;
+	font-family: '[PingFang]';
+	font-size: 34/75rem;
+	font-weight: bolder;
+}
+#settingCon .selectBar .changeBtn {
+	width: 112/75rem;
+	height: 68/75rem;
+	border-radius: 34/75rem;
+	float: right;
+	background-color: rgba(4,190,2,1);
+	box-sizing: border-box;
+	padding: 2/75rem;
+}
+.changeBtn .o {
+	float: left;
+	width: 64/75rem;
+	height: 64/75rem;
+	background: white;
+	border-radius: 50%;
+}
+.changeBtn .o.r {
+	float: right;
+}
+#settingCon .bottomCon {
+	padding: 40/75rem 36/75rem;
+}
+#settingCon .bottomCon p {
+	font-family: '[PingFang]';
+	font-size: 34/75rem;
+	margin-bottom: 130/75rem;
+	color: #000;
+	font-weight: bolder;
+}
+#settingCon .bottomCon p:nth-child(2) {
+	font-family: 'Arial';
+	font-size: 28/75rem;
+	color: rgba(102,102,102,1);
+}
+#settingCon .back {
+	position: absolute;
+	bottom: 100/75rem;
+	left: 0;
+	right: 0;
+}
+@media screen and (max-width: 300px) {
+    body {
+        background-color:lightblue;
+    }
 }

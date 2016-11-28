@@ -1,7 +1,7 @@
 #main {
   position: relative;
   width: 10rem;
-  height: 13.66666667rem;
+  background: #fff;
 }
 #main .setting {
   position: absolute;
@@ -9,8 +9,6 @@
   right: 1.13333333rem;
   width: 0.61333333rem;
   height: 0.45333333rem;
-  border: 1px solid black;
-  background: #ff0000;
 }
 #main .setting .bar {
   width: 0.50666667rem;
@@ -22,15 +20,176 @@
 #main .setting .bar:nth-child(2) {
   width: 0.61333333rem;
 }
-#main {
-  background: url('../img/mainBg.png') no-repeat center top;
+#main.noBinding {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
+#main #bg {
+  height: 9.6rem;
+}
+#main #bg img {
+  width: 100%;
+  height: 100%;
+}
+#main .btnsCon {
+  position: relative;
+  height: 6.46666667rem;
+  overflow: hidden;
+}
+.btn {
+  width: 4.73333333rem;
+  height: 1.13333333rem;
+  margin: 1.13333333rem auto 1.2rem;
+  border-radius: 0.56666667rem;
+  text-align: center;
+  line-height: 1.13333333rem;
+  color: #fff;
+  font-size: 0.53333333rem;
+  font-family: '[PingFang]';
+  box-shadow: 0.06666667rem 0.13333333rem 0.2rem rgba(88, 197, 203, 0.2);
+  background: -webkit-linear-gradient(left, #58c5cb, #6be3a3);
+  /* Safari  5.1 - 6.0 */
+  background: -o-linear-gradient(right, #58c5cb, #6be3a3);
+  /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #58c5cb, #6be3a3);
+  /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #58c5cb, #6be3a3);
+  /* 标准的语法 */
+}
+.btn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+#main .mask {
+  display: none;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.38);
+}
+#main.noBinding .mask {
+  display: block;
+}
+#noBind {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 4.13333333rem;
+  width: 7.33333333rem;
+  height: 6rem;
+  margin: 0 auto;
+  border-radius: 0.10666667rem;
+  background: white;
+  padding: 0.36rem;
+  box-sizing: border-box;
+  font-family: '[PingFang]';
+}
+#main.noBinding + #noBind {
+  display: block !important;
+}
+#noBind h2 {
+  margin-top: 1.2rem;
+  text-align: center;
+  color: #000;
+  font-size: 0.42666667rem;
+  font-weight: normal;
+}
+#noBind .close {
+  display: block;
+  width: 0.37333333rem;
+  height: 0.37333333rem;
+  background: url(../img/close.png) no-repeat center;
+  background-size: cover;
+  float: right;
+}
+#noBind .btn {
+  letter-spacing: 10px;
+}
+#settingCon {
+  display: none;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+#main.setting + #settingCon {
+  display: block;
+}
+#settingCon .topBg {
+  height: 26.53399668%;
+  background: lightskyblue;
+  background: url('../img/topBg.png') no-repeat center center;
   background-size: cover;
 }
-#main h2 {
-  font-size: 0.53333333rem;
-  color: white;
+#settingCon .selectBar {
+  height: 1.46666667rem;
+  padding: 0.29333333rem 0.49333333rem;
+  box-shadow: 0 0.04rem 0.06666667rem rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
-#main h1 {
-  font-size: 0.53333333rem;
-  color: white;
+#settingCon .selectBar p {
+  float: left;
+  display: block;
+  line-height: 0.93333333rem;
+  font-family: '[PingFang]';
+  font-size: 0.45333333rem;
+  font-weight: bolder;
+}
+#settingCon .selectBar .changeBtn {
+  width: 1.49333333rem;
+  height: 0.90666667rem;
+  border-radius: 0.45333333rem;
+  float: right;
+  background-color: #04be02;
+  box-sizing: border-box;
+  padding: 0.02666667rem;
+}
+.changeBtn .o {
+  float: left;
+  width: 0.85333333rem;
+  height: 0.85333333rem;
+  background: white;
+  border-radius: 50%;
+}
+.changeBtn .o.r {
+  float: right;
+}
+#settingCon .bottomCon {
+  padding: 0.53333333rem 0.48rem;
+}
+#settingCon .bottomCon p {
+  font-family: '[PingFang]';
+  font-size: 0.45333333rem;
+  margin-bottom: 1.73333333rem;
+  color: #000;
+  font-weight: bolder;
+}
+#settingCon .bottomCon p:nth-child(2) {
+  font-family: 'Arial';
+  font-size: 0.37333333rem;
+  color: #666666;
+}
+#settingCon .back {
+  position: absolute;
+  bottom: 1.33333333rem;
+  left: 0;
+  right: 0;
+}
+@media screen and (max-width: 300px) {
+  body {
+    background-color: lightblue;
+  }
 }
