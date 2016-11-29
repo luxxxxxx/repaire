@@ -11,7 +11,26 @@
 	</script>
 </head>
 <body>
+	<div id="mask" class="complaint">  <!-- class：none 关闭mask notFinish：信息输入未完整； offLine: 网络开小差 complaint: 收到投诉-->
+		<div class="msg">  
+			<div class="close"></div>
+			<p class="notFinish">你的数据还没有填写完整哟~</p>
+			<p class="offLine">网络开小差了<br />稍后再来试试吧~</p>
+			<!-- <p>稍后再来试试吧~</p> -->
+			<div class="btn">返回</div>
+		</div>
+		<div class="envelope">  
+			<div class="top">
+				<div class="close"></div>
+			</div>
+			<div class="bottom">
+				<p>你的投诉我们已经收到<br />我们将立即进行处理！</p>
+				<div class="btn">返回</div>
+			</div>
+		</div>
+	</div>	
 	<div id="main">
+	<!-- <div id="mask"></div> -->
 		<div class="topCon">
 			<div class="content"> 
 				<p>奔跑的萌新</p>
@@ -174,7 +193,7 @@
 			</div>
 			<form>
 				<div class="textCon">
-					<textarea placeholder="请在这里输入详细反馈，二百字以内哦~"></textarea>
+					<textarea maxlength="200" placeholder="请在这里输入详细反馈，二百字以内哦~"></textarea>
 				</div>
 				<div class="submitBtn">提交</div>
 			</form>
@@ -189,7 +208,7 @@
 			</div>
 			<div class="info">
 				<i class="icon icons icon2"></i><span class="event Phone">电话</span>
-				<input type="phone" class="text" name="phone" placeholder="请输入常用的手机号码">
+				<input type="phone" class="text" name="phone" maxlength="10" placeholder="请输入常用的手机号码">
 			</div>
 			<div class="info">
 				<i class="icon icons icon3"></i><span class="event Type">服务类型</span>
@@ -213,7 +232,7 @@
 			</div>
 			<div class="info">
 				<i class="icon icons icon7"></i><span class="event Project"></span>
-				<input type="phone" class="text" name="phone" placeholder="请输入十个字以内的地址">
+				<input type="phone" class="text" name="phone" maxlength="10" placeholder="请输入十个字以内的地址">
 				<i class="icon right"></i>
 			</div>
 		</div>
@@ -274,18 +293,39 @@
 		    secondArea = $$('#main > .sltCon'),
 		    mainContents = $$('.mainContent'),
 		    repairBtn = $$('#repairBtn'),  //我要报修按钮
-		    repairPage = $$('#repair'),
 		    slts = $$('.sltCon .slt'),  // 已完成和 待解决 两个按钮
 		    finishedList = $$('#content > ul.finished.mainContent li'),  //已完成下拉列表所有li
-		    waittosolveList = $$('#content > ul.waittosolve.mainContent li'), //待解决下拉列表所有li
-		    processingPage = $$('#processing'),  //正在處理中頁面
-		    finishedPage = $$('#finished'),  //已經完成頁面 
+		    processingList = $$('#content > ul.waittosolve.mainContent li'), //待解决下拉列表所有li
+		    repairPage = $$('#repair'),
 		    repairSubmitBtn = $$('#repair .submitBtn'),  //报修页面 里面提交按钮
-		    content = $$('#content'); 
+		    finishedPage = $$('#finished'),  //已經完成頁面 
+		    finishedPageSubmitBtn = $$('#finished .submitBtn'),
+		    processingPage = $$('#processing'),  //正在處理中頁面
+		    processingPageSubmitBtn = $$('#processingPage .submit'),
+		    allInput = $$('input'),
+		    mask = $$('#mask'),  //全局遮罩层
+		    closeMaskBtn = $$('#mask .close'),  //遮罩层里面 信息的关闭按钮
+		    content = $$('#content');
 		   	console.log(repairSubmitBtn);
-		// main.style.height = winH + 'px';
-		// main.style.width = winW + 'px';
-		// content.style.height = winH - getIntStyle(firstArea,'height') - secondArea.offsetHeight + 'px';
+		main.style.height = winH + 'px';
+		main.style.width = winW + 'px';
+		content.style.height = winH - getIntStyle(firstArea,'height') - secondArea.offsetHeight + 'px';
+
+		// ajax({
+		// 	'url' : 'http://192.168.199.244/MagicLoop/index.php?s=/addon/BaoxiuAndTousu/Common/homeView&openid=ouRCyjndQXTkjgtAuzUG4F3MZNa8',
+		// 	'method' : 'post',
+		// 	'success' : function (data) {
+		// 		var dataJson = JSON.parse(data);
+		// 		console.log(dataJson.status);
+		// 		console.log(JSON.parse(data))
+		// 		$$('#main > div.topCon > div > p').innerHTML = dataJson.data.stuName;
+
+		// 	},
+		// 	'error' : function () {
+		// 		alert('error');
+		// 	}
+		// })
+
 		on(slts,'click',function(){   /*点击选项卡事件*/
 			removeClass(slts,'select');
 			addClass(this,'select');
@@ -306,11 +346,26 @@
 		on (repairSubmitBtn, 'click', function () {
 			repairPage.style.display = 'none';
 		})
-
 		for (var i = 0; i < stars.length; i++) {
 			stars[i].index = i;
 		}
-		on(stars,'click',function () {
+		on(finishedList,'click',function(){  //所有已完成列表点击之后弹出已完成表单
+			removeClass(finishedPage,'none');
+		})
+		on(finishedPageSubmitBtn,'click',function(){  //已完成分页提交按钮
+			addClass(finishedPage,'none');
+		})
+		on(processingList,'click',function(){
+			removeClass(processingPage,'none');
+		})
+		on(processingPageSubmitBtn,'click',function (){
+			addClass(processingPage,'none');
+		})
+		on(closeMaskBtn,'click',function(){  //信息弹框里面关闭按钮
+			addClass(mask,'none');
+
+		})
+		on(stars,'click',function () {  //小星星点击触发事件
 			giveStar(this.index);
 		})
 		function giveStar (index) {

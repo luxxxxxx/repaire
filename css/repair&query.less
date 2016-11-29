@@ -191,7 +191,6 @@ body {
 	left: 0;
 	top: 0;
 	width: 100%;
-	height: 100%;
 	background-color: rgba(246,246,246,1);
 	&.none {
 		display: none !important;
@@ -467,8 +466,21 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
 	background-color: rgba(246,246,246,1);
+	.mask {
+		z-index: 50;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.3);
+		.return {
+			position: absolute;
+			left: 50%;
+
+		}
+	}
 	.topCon {
 		background: #fff;
 		box-sizing: border-box;
@@ -478,6 +490,16 @@ body {
 			margin-bottom: 40/75rem;
 			box-sizing: border-box;
 			padding-bottom: 40/75rem;
+			&:nth-child(1) {
+				i.icon {
+					&.right {
+						width: 0.37333333rem;
+						height: 0.42666667rem;
+						background: url('../img/lock.jpg') no-repeat center center;
+						background-size: cover;
+					}
+				}
+			}
 			&:nth-child(5) {
 				i.icon {
 					visibility: hidden;
@@ -629,7 +651,7 @@ body {
 	}
 	.bottomCon {
 		box-sizing: border-box;
-		padding: 38/75rem 40/75rem 0;
+		padding: 38/75rem 40/75rem;
 		margin-top: 45/75rem;
 		background: #fff;
 		hr {
@@ -732,5 +754,137 @@ body {
 			background: linear-gradient(to right, #58c5cb, #6be3a3);
 			/* 标准的语法 */
 		}
+	}
+}
+#mask {
+	z-index: 20;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.3);
+	&.none {
+		display: none !important;
+	}
+	&.offLine {
+		.msg {
+			display: block;
+			p.offLine {
+				display: block;
+			}
+		}
+	}
+	&.notFinish {
+		.msg {
+			display: block;
+			p.notFinish {
+				display: block;
+			}
+		}
+	}
+	.btn {
+		width: 4.69333333rem;
+		height: 1.2rem;
+		border-radius: 0.6rem;
+		margin: 1.06666667rem auto;
+		box-shadow: 0.06666667rem 0.13333333rem 0.2rem rgba(88, 197, 203, 0.2);
+		background: -webkit-linear-gradient(left, #58c5cb, #6be3a3);
+		/* Safari  5.1 - 6.0 */
+		background: -o-linear-gradient(right, #58c5cb, #6be3a3);
+		/* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(right, #58c5cb, #6be3a3);
+		/* Firefox 3.6 - 15 */
+		background: linear-gradient(to right, #58c5cb, #6be3a3);
+		/* 标准的语法 */
+		letter-spacing: 0.29333333rem;
+		text-align: center;
+		line-height: 1.2rem;
+		color: #fff;
+		font-size: 0.42666667rem;
+		text-indent: 0.29333333rem;
+	}
+	.msg {
+		display: none;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		width: 7.30666667rem;
+		height: 5.66666667rem;
+		border-radius: 0.13333333rem;
+		background: white;
+		transform: translate(-50%,-50%);
+		box-sizing: border-box;
+		padding: 1.53333333rem 0 0;
+		.close {
+			position: absolute;
+			right: 0.72rem;
+			top: 0.34666667rem;
+			width: 0.37333333rem;
+			height: 0.37333333rem;
+			background: url('../img/close.png') no-repeat center center;
+			background-size: cover;
+			background-position: center center;
+		}
+		p {
+			display: none;
+			color: rgba(51,51,51,1);
+			font-size: 0.42666667rem;
+			text-align: center;
+			line-height: 0.61333333rem;
+		}
+	}
+	&.complaint {
+		.envelope {
+			display: block;
+		}
+	}
+	.envelope {
+		display: none;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		width: 8.24rem;  
+		height: 7.54666667rem;
+		background: transparent;
+		.close {
+			position: absolute;
+			top: 0.34666667rem;
+			right: 0.72rem;
+			width: 0.4rem;
+			height: 0.4rem;
+			background: transparent;
+		}
+		.bottom {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 4.10666667rem;
+			background: #fff;
+			box-sizing: border-box;
+			padding-top: 0.73333333rem;
+			border-radius: 0 0 0.13333333rem 0.13333333rem;
+			overflow: hidden;
+			p {
+				color: rgba(51,51,51,1);
+				font-size: 0.42666667rem;
+				text-align: center;
+				line-height: 0.61333333rem;
+			}
+			.btn {
+				margin-top: 0.50666667rem;
+
+			}
+		}
+		.top {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 3.56rem;
+			background: transparent url('../img/envelopeTop.png') no-repeat center;
+			background-size: cover;
+		}
+		
 	}
 }

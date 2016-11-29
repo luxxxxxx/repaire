@@ -22,7 +22,9 @@
 		</div>
 		<div class="btnsCon">
 			<div class="btn bxcx">
-				报修/查询
+				<a href="repair&query.html">
+					报修/查询
+				</a>
 			</div>
 			<div class="btn bxcx n-margin-t">建议/投诉</div>
 		</div>
@@ -104,14 +106,14 @@
 				'method' : 'GET',
 				'url' : 'https://e39f932a.ngrok.io/repair/index.php?c=baoxiu&a=checkStatus',
 				'success' : function (data) {
-					console.log(Json.parse('http://192.168.199.243/repair/index.php?c=baoxiu&a=checkStatus'))
 					This.onOff = true;
 				},
 				'error' : function () {
 					// alert(data);
 					alert('error');
 					This.onOff = true;
-				}
+				},
+				
 				})
 			}
 		})
