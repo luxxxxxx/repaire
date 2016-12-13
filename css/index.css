@@ -4,6 +4,7 @@
   background: #fff;
 }
 #main .setting {
+  z-index: 100;
   position: absolute;
   top: 0.46666667rem;
   right: 1.13333333rem;
@@ -28,7 +29,31 @@
   filter: blur(3px);
 }
 #main #bg {
+  position: relative;
   height: 9.6rem;
+}
+#main #bg #nameBox {
+  position: absolute;
+  bottom: 4.50666667rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 5.2rem;
+  height: 2.53333333rem;
+}
+#main #bg #nameBox span {
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-size: 0.53333333rem;
+  font-weight: lighter;
+  margin-bottom: 0.73333333rem;
+}
+#main #bg #nameBox h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 0.93333333rem;
+  font-weight: bold;
 }
 #main #bg img {
   width: 100%;
@@ -125,7 +150,7 @@
   height: 100%;
   background: white;
 }
-#main.setting + #settingCon {
+#main.setting + #noBind + #settingCon {
   display: block;
 }
 #settingCon .topBg {

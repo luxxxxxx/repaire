@@ -158,6 +158,17 @@ on = function ( obj , evName , evFn  , boolean ) {  /*绑定事件 (支持数组
 		}
 	}
 },
+getObjectURL = function (file) {
+    var url = null;
+    if (window.createObjectURL != undefined) { // basic
+        url = window.createObjectURL(file);
+    } else if (window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if (window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
 ajax = function ( json ) {
 	var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'),  //兼容老版本IE 
 	method = json.method || 'get',
@@ -238,6 +249,23 @@ move = function ( obj , targetJson , time , cv , fn ) {
 			obj.style[key] = Tween[cv]( t , b , c , d ) + 'px';
 		}
 	},13)
+},
+siblings = function (ele) {
+	var Nodes = [],
+	    firstNode = ele.parentNode.firstChild,
+	    _ele = firstNode;
+    if (_ele.nodeType === 1) Nodes.push(_ele);
+	while (_ele.nextSibling != null) {
+		console.log(_ele)
+		_ele = _ele.nextSibling;
+		if (_ele.nodeType === 1 ) {
+			Nodes.push(_ele);
+		}
+	}
+    return Nodes;
+},
+removeSiblingsClass = function (ele,classN) {
+	removeClass(siblings(ele),classN)
 },
 Tween = {  //Tween 算法   t：执行时时间   b：变化属性  c：当前时间  时间差  d：
 	linear: function (t, b, c, d){  //匀速

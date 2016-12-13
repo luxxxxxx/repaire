@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/index.css" />
 </head>
 <body>
-	<div id="main" class="noBinding">  <!-- noBinding 未绑定-->
+	<div id="main" class="">  <!-- noBinding 未绑定-->
 		<div class="setting">
 			<div class="bar"></div>
 			<div class="bar"></div>
@@ -19,14 +19,14 @@
 		</div>
 		<div id="bg">
 			<img src="./img/mainBg.png">
+			<div id="nameBox">
+				<span>hi,亲爱的</span>
+				<h1></h1>
+			</div>
 		</div>
 		<div class="btnsCon">
-			<div class="btn bxcx">
-				<a href="repair&query.html">
-					报修/查询
-				</a>
-			</div>
-			<div class="btn bxcx n-margin-t">建议/投诉</div>
+			<div class="btn bxcx">报修/查询</div>
+			<div class="btn jyts n-margin-t">建议/投诉</div>
 		</div>
 		<div class="mask"></div>
 	</div>
@@ -58,7 +58,6 @@
 	main = $$('#main'),  
 	firstArea = $$('#bg'),  //第一块区域
 	secondArea = $$('.btnsCon'),   //第二块区域*/
-	bxcx = $$('.bxcx'),  //报修查询按钮
 	extraArea = $$('#noBind');
 	var resetSize = function () {//初始化浏览器窗口大小
 		winH = window.innerHeight;
@@ -80,9 +79,19 @@
 			changeBtn = $$('.changeBtn'),
 			o = changeBtn.querySelector('.o'),
 			settingBtn = $$('#main .setting'),
-			winWidth = getWinWidth();
-			winHeight = getWinHeight();
-			backNormal = $$('#settingCon .back');
+			winWidth = getWinWidth(),
+			winHeight = getWinHeight(),
+			bxcx = $$('.bxcx'),  //报修查询按钮
+			jyts = $$('.jyts'), //建议投诉按钮
+			backNormal = $$('#settingCon .back'),
+			oStuName = $$('#nameBox > h1'),
+			status,  //ajax返回状态
+			message,  //ajax返回message
+			stuName,  //ajax返回学生姓名
+			stuXh,  //ajax返回学生学号
+			baoxiuUrl,  //ajax返回报修链接
+			tousuUrl;  //ajax返回投诉url
+
 		on(changeBtn,'click',function(){
 			toggleClass(o,'r')
 		});
@@ -98,24 +107,60 @@
 		for (var i = 0; i < bxcx.length; i++) {
 			bxcx[i].onOff = true;
 		}
+
+		ajax({
+			'method' : 'post',
+			'url' : 'http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/common/homeview/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8',
+			'success' : function (data) {
+				var dataObj = JSON.parse(data);
+				status = dataObj.status;
+				message = dataObj.message;
+				stuName = dataObj.data.stuName;
+				baoxiuUrl = dataObj.data.baoxiuUrl;
+				tousuUrl = dataObj.data.tousuUrl;
+				oStuName.innerHTML = stuName; // 替换学生名字
+				console.log(status);
+				on(bxcx,'click',function () {
+					if (status) {
+						window.location.href = baoxiuUrl;
+					} else {
+						main.className = 'noBinding';
+					}
+				})
+				on(jyts,'click',function() {
+					if (status) {
+						window.location.href = tousuUrl;
+					} else {
+						main.className = 'noBinding';
+					}
+				})
+			},
+			'error' : function () {
+
+			}
+		})
+ 
 		on(bxcx,'click',function () {
 			var This = this;
 			if (this.onOff) {
 				this.onOff = false;  //定义开关  如果正在发送请求中的话就拒绝再次发送请求 直到请求结束
-				ajax({
-				'method' : 'GET',
-				'url' : 'https://e39f932a.ngrok.io/repair/index.php?c=baoxiu&a=checkStatus',
-				'success' : function (data) {
-					This.onOff = true;
-				},
-				'error' : function () {
-					// alert(data);
-					alert('error');
-					This.onOff = true;
-				},
+				// ajax({
+				// 'method' : 'GET',
+				// 'url' : 'http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/index/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8',
+				// 'success' : function (data) {
+				// 	var dataObj = JSON.parse(data);
+				// 	// console.log(dataObj);
+				// 	console.log(data)
+				// },
+				// 'error' : function () {
+				// 	// alert(data);
+				// 	alert('error');
+				// 	This.onOff = true;
+				// },
 				
-				})
+				// })
 			}
 		})
 	})()
+
 </script>

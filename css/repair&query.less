@@ -578,6 +578,8 @@ body {
 						background-size: cover;
 					}
 					&.icon6 {
+						position: relative;
+						top: -0.06666667rem;
 						width: 32/75rem;
 						height: 36/75rem;
 						background: url('../img/icon3.jpg') no-repeat center center;
@@ -661,6 +663,8 @@ body {
 		.info {
 			padding-bottom: 0.53333333rem;
 			i.icon.left {
+				position: relative;
+				top: -0.08rem;
 				float: left;
 				width: 0.42666667rem;
 				height: 0.49333333rem;
@@ -734,6 +738,7 @@ body {
 			top: 180/75rem;
 			margin: 0.37333333rem auto;
 			top: 180/75rem;
+			text-indent: 0.29333333rem;
 			letter-spacing: 0.29333333rem;
 			/*bottom: 28/75rem;*/
 			display: block;
@@ -837,6 +842,33 @@ body {
 	&.complaint {
 		.envelope {
 			display: block;
+			.top {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				height: 3.56rem;
+				background: transparent url('../img/envelopeTop.png') no-repeat center;
+				background-size: cover;
+			}
+			p.complaint {
+				display: block;
+			}
+		}
+	}
+	&.support {
+		.envelope {
+			display: block;
+		}
+		.top {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 3.56rem;
+			background: transparent url('../img/envelopeTop2.png') no-repeat center;
+			background-size: cover;
+		}
+		p.support {
+			display: block;
 		}
 	}
 	.envelope {
@@ -856,6 +888,12 @@ body {
 			height: 0.4rem;
 			background: transparent;
 		}
+		.complaint {
+			display: none;
+		}
+		.support {
+			display: none;
+		}
 		.bottom {
 			position: absolute;
 			bottom: 0;
@@ -874,17 +912,7 @@ body {
 			}
 			.btn {
 				margin-top: 0.50666667rem;
-
 			}
 		}
-		.top {
-			position: absolute;
-			top: 0;
-			width: 100%;
-			height: 3.56rem;
-			background: transparent url('../img/envelopeTop.png') no-repeat center;
-			background-size: cover;
-		}
-		
 	}
 }

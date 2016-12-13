@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我要报修</title>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<style type="text/css" src=""></style>
+	<script type="text/javascript">
+	!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+	</script>
+	<link rel="stylesheet" type="text/css" href="./css/repair.css">
+</head>
+<body>
+	<div id="mask" class='none'>  <!-- class：none 关闭mask notFinish：信息输入未完整； offLine: 网络开小差 complaint: 收到投诉 support： 感谢支持 -->
+		<div class="msg"> 
+			<div class="close"></div>
+			<p class="notFinish">你的数据还没有填写完整哟~</p>
+			<p class="offLine">网络开小差了<br />稍后再来试试吧~</p>
+			<!-- <p>稍后再来试试吧~</p> -->
+			<div class="btn">返回</div>
+		</div>
+		<div class="envelope">  
+			<div class="top">
+				<div class="close"></div>
+			</div>
+			<div class="bottom">
+				<p class="complaint">你的投诉我们已经收到<br />我们将立即进行处理！</p>
+				<p class="support">感谢你的支持我们会做得更好~</p>
+				<div class="btn">返回</div>
+			</div>
+		</div>
+		<div id="type" class="selection">  <!-- 服务类型 -->
+			<div class="option n-margin-t"><i class="o"></i><span>报修</span></div>
+		</div>
+		<div id="selection" class="selection">
+			<div class="firstOption false"><i class="o"></i><span>请点击选择项目</span></div>
+		</div>
+		<div id="selection2" class="selection">
+			<div class="firstOption false"><i class="o"></i><span>请点击选择项目</span></div>
+		</div>
+		<div id="areaSelection" class="selection"></div>
+	</div>	
+	<div id="repair">
+	<form method="post" enctype='multipart/form-data' action="http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/saveRepairApp/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8">
+		<div class="topCon">
+			<div class="info">
+				<i class="icon icons icon1">
+					<img src="./img/icon1.jpg">
+				</i>
+				<span class="event Name">申报人</span>
+				<span class="middle name userName">奔跑的萌新</span>
+				<i class="icon right lock"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon2">
+					<img src="./img/icon2.jpg">	
+				</i>
+				<span class="event Phone">电话</span>
+				<input type="tel" class="text" name="bxdh" maxlength="11" placeholder="请输入常用的手机号码">
+			</div>
+			<div class="info">
+				<i class="icon icons icon3">
+					<img src="./img/icon7.jpg">	
+				</i>
+				<span class="event Type">服务类型</span>
+				<span class="middle slt">点击选择分类</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon4">
+					<img src="./img/icon8.jpg">
+				</i>
+				<span class="event Project">服务项目</span>
+				<span class="middle slt">点击选择分类</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon5"></i>
+				<span class="event Project"></span>
+				<span type="text" class="middle slt">请点击选择服务项目</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon6">
+					<img src="./img/icon3.jpg">
+				</i>
+				<span class="event Address">详细地址</span>
+				<span class="middle slt">请选择区域</span>
+				<i class="icon right"></i>
+			</div>
+			<div class="info">
+				<i class="icon icons icon7"></i><span class="event Project"></span>
+				<input type="text" class="text" name="bxdd" maxlength="10" placeholder="请输入十个字以内的地址">
+				<i class="icon right"></i>
+			</div>
+		</div>
+		<div class="bottomCon">
+			<div class="info clearfix">
+				<i class="icon left"></i>
+				<p class="t">标题</p>
+				<input class="text" type="text" maxlength="10" name="bt" placeholder="请输入十个字以内">
+			</div>
+			<hr />
+			<textarea name="bxnr" maxlength="200" class="text area" placeholder="请在这里输入详细描述，二百字以内哦~"></textarea>
+			<div class="uploadPicCon clearfix">
+				<div class="pic upload"><img src="./img/camera.jpg"></div>
+				<input type="file" name="file" id="pic_selector" accept="image/*" style="display: none;">
+			</div>
+			<hr class="n-margin" /> 
+			<input id="inputEvent" type="text" name="fwxm" style="display: none;">
+			<input id="inputArea" type="text" name="bxqy" style="display: none;" >
+			<div id="repairSubmit" class="submitBtn">提交</div>
+			<input id="inputSubmit" type="submit" style="display: none;"></div>
+
+		</div>
+	</form>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript" >
+	var serviceType = $$('#repair div.topCon div.info:nth-child(3)'),  //服务类型
+		serviceEvent = $$('#repair div.topCon div:nth-child(4)'), //服务项目 
+		serviceEvent2 = $$('#repair div.topCon div:nth-child(5)'), //服务项目精细分类
+		aserviceEvent = ['水','电','光源','木工','电器','泥水','管道疏通','换表','多媒体设备'],
+		selectionCon = $$('#selection'),
+		selectionCon2 = $$('#selection2'), //更详细的点击选择分类
+		AreaCon = $$('#repair div.topCon div:nth-child(6)'), //选择区域点击区域
+		areaSelection = $$('#areaSelection'),
+		// AreaCon2 = $$('')
+		type1 = ['水龙头','水管','水阀、球阀'],
+		type2 = ['室内用电维修','公共区域用电维修'],
+		type3 = ['路灯','室内照明灯'],
+		type4 = ['门窗、锁','桌、椅、家具','窗帘','黑板','配钥匙'],
+		type5 = ['开关','插座','教室多媒体设备','电风扇','开水器'],
+		type6 = ['土建维修'],
+		type7 = ['疏通'],
+		type8 = ['换水表','换电表','高压表'],
+		type9 = ['教室多媒体设备'],
+		aArea = ['住宅区','教学区','校园公共区','办公区','学生公寓区'],
+		mask = $$('#mask'),
+		inputTel = $$('#repair div.topCon div:nth-child(2) input'), //电话输入框
+		inputAdress = $$('#repair div.topCon div:nth-child(7) input'), //地址输入框
+		inputTitle = $$('#repair div.bottomCon div.info.clearfix input'), //标题输入框
+		inputDesc = $$('#repair div.bottomCon textarea'),
+		showImageBox = $$('#repair .bottomCon .uploadPicCon div:nth-child(1)'), //图片展示框
+		showImage = $$('#repair .bottomCon .uploadPicCon div:nth-child(1) img'),  //图片展示框里面的图片
+		onOff = false, //用来判断是否第二个框可以点击出来
+	    optionL = aserviceEvent.length,
+	    inputEvent = $$('#inputEvent'), //隐藏提交用到的input
+	    inputArea = $$('#inputArea'),  //隐藏提交用到的input
+	    bTel = false,  //电话是否填写
+	    bEvent = false, //服务项目是否选择 (选择二级菜单才有)
+	    bArea = false, //地区是否选择
+	    bDetailArea = false, //详细地址是否填写
+	    bTitle = false, //标题是否填写
+	    bDesc = false, //详细描述法是否填写
+	    bPho = false, //照片是否提交
+	    bType = false,  //类型是否点击
+	    bUploadImg = false,  //图片上传按钮是否点击  （防止多次点击）
+	    picSelector = $$('#pic_selector'),  //选择图片input 
+	    repairSubmit = $$('#repairSubmit'),  //提交按钮
+		inputSubmit = $$('#inputSubmit'),
+		msgClose = $$('#mask .close'),  //关闭消息
+		msgReturn = $$('#mask .btn');  //关闭信息
+	for (var i = 0; i < optionL; i++) {  //生成服务类型选项框
+		var ooption = document.createElement('div'),
+			oi = document.createElement('i'),
+			ospan = document.createElement('span');
+		ooption.className = 'option';
+		ooption.index = i;
+		oi.className = 'o';
+		ospan.innerHTML = aserviceEvent[i];
+		ooption.appendChild(oi);
+		ooption.appendChild(ospan);
+		ooption.addEventListener('click',function () {
+			removeSiblingsClass(this,'select')
+			addClass(this,'select');
+			$$('#repair div.topCon div:nth-child(4) span.middle.slt').innerHTML = this.lastElementChild.innerHTML;
+			onOff = true;
+			renderSelection2(eval('type' + (this.index + 1)));
+			$$('#repair div.topCon div:nth-child(5) span.middle.slt').innerHTML = '请点击选择服务项目';
+		})
+		selectionCon.appendChild(ooption);
+	}
+
+	var AreaOptionsL = aArea.length;
+	for (var i = 0; i < AreaOptionsL; i++) {   //地区选项
+		var ooption = document.createElement('div'),
+			oi = document.createElement('i'),
+			ospan = document.createElement('span');
+		ooption.className = 'option';
+		ooption.index = i;
+		oi.className = 'o';
+		ospan.innerHTML = aArea[i];
+		ooption.appendChild(oi);
+		ooption.appendChild(ospan);
+		ooption.addEventListener('click',function () {
+			removeSiblingsClass(this,'select')
+			addClass(this,'select');
+			$$('#repair div.topCon div:nth-child(6) span.middle.slt').innerHTML = this.lastElementChild.innerHTML;
+			bArea = true;
+			inputArea.value = this.lastElementChild.innerHTML;
+			console.log('bArea='+bArea);
+		})
+		areaSelection.appendChild(ooption);
+	}
+
+	var options = $$('#mask #selection .option');  //选项卡1所有的选项
+	var typeOptions = $$('#type .option');  //类型框里面的所有选项
+	on(typeOptions,'click',function () {  //服务类型里面的选项点击触发事件
+		removeSiblingsClass(this,'select');
+		addClass(this,'select');
+		$$('#repair div.topCon div:nth-child(3) span.middle.slt').innerHTML = this.lastElementChild.innerHTML;
+		bType = true;
+		console.log('bType = ' +bType);
+	});
+	// ajax ({
+	// 	'url' : 'http://192.168.199.243/Magicloop/index.php?s=/addon/BaoxiuAndTousu/common/savePic',
+	// 	'method' : 'post',
+	// });
+	function renderSelection2 (array) {  //渲染二级项目选项
+		selectionCon2.innerHTML = '<div class="firstOption false"><i class="o"></i><span>请点击选择项目</span></div>';
+		for (var i = array.length - 1; i >= 0; i--) {
+			var ooption = document.createElement('div'),
+				oi = document.createElement('i'),
+				ospan = document.createElement('span');
+			ooption.className = 'option';
+			ooption.index = i;
+			oi.className = 'o';
+			ospan.innerHTML = array[i];
+			ooption.appendChild(oi);
+			ooption.appendChild(ospan);
+			ooption.onclick = function () {
+				removeSiblingsClass(this,'select');
+				addClass(this,'select');
+				$$('#repair div.topCon div:nth-child(5) span.middle.slt').innerHTML =  this.lastElementChild.innerHTML;
+				bEvent = true;
+				inputEvent.value = this.lastElementChild.innerHTML;
+				console.log('bEvent='+bEvent)
+			}	
+			selectionCon2.appendChild(ooption);
+		}
+	}
+
+	on(inputTel,'change',function () { //电话输入框
+		if (this.value != '' && this.value.length === 11) {
+			bTel = true;
+		} else {
+			bTel = false;
+		}
+		console.log('bTel=' + bTel)
+	})
+	on(inputAdress,'change',function (){ //地址输入框
+		if (this.value != '') {
+			bDetailArea = true;
+		} else {
+			bDetailArea = false;
+		}
+		console.log('bDetailArea='+bDetailArea);
+	})
+	on(inputTitle,'change',function (){  //标题输入框
+		if (this.value != '') {
+			bTitle = true;
+		} else {
+			bTitle = false;
+		}
+		console.log('bTitle='+bTitle)
+	})
+	on(inputDesc,'change',function (){  //描述输入框
+		if (this.value != '') {
+			bDesc = true;
+		} else{
+			bDesc = false;
+		}
+		console.log('bDesc=' + bDesc)
+	})
+	on(serviceType,'click',function () {  //服务类型点击
+		mask.className = 'showType';
+	});
+	on(serviceEvent,'click',function () { //服务项目点击
+		mask.className = 'showOption';
+	});
+	on(serviceEvent2,'click',function () {
+		if (onOff) mask.className = 'showOption2';
+	});
+	on(AreaCon,'click',function () {
+		mask.className = 'showArea';
+	});
+	on(mask,'touchstart',function(e){
+		var ev = e || window.event;
+		if (ev.target.id == 'mask') {
+			mask.className = 'none';
+		};
+	});
+
+	on(showImageBox,'click',function () {  //图片框点击之后
+			bUploadImg = true;
+			picSelector.click();
+	})
+
+	picSelector.onchange = function () {
+		showImage.src = getObjectURL(this.files[0]);
+		removeClass(showImageBox,'upload');
+	}
+	on(repairSubmit,'click',function() {
+		if (bTel&&bEvent&&bArea&&bDetailArea&&bTitle&&bDesc&&bType) {
+				inputSubmit.click();
+			}else {
+				mask.className = 'notFinish';				
+			}
+	})
+	on(msgClose,'click',function(){
+		mask.className = 'none';
+	});
+	on(msgReturn,'click',function(){
+		mask.className = 'none';
+	})
+	// on(mask,'click',function (e) {
+	// 	var ev = e || window.event;
+	// 	console.log(ev.target);
+	// })
+</script>
+

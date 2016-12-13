@@ -11,8 +11,11 @@
 	</script>
 </head>
 <body>
-	<div id="mask" class="complaint">  <!-- class：none 关闭mask notFinish：信息输入未完整； offLine: 网络开小差 complaint: 收到投诉-->
-		<div class="msg">  
+	<div id="mask" class='loading'>  <!-- class：none 关闭mask notFinish：信息输入未完整； offLine: 网络开小差 complaint: 收到投诉 support： 感谢支持 -->
+		<div class="loading">
+			
+		</div>
+		<div class="msg"> 
 			<div class="close"></div>
 			<p class="notFinish">你的数据还没有填写完整哟~</p>
 			<p class="offLine">网络开小差了<br />稍后再来试试吧~</p>
@@ -24,16 +27,21 @@
 				<div class="close"></div>
 			</div>
 			<div class="bottom">
-				<p>你的投诉我们已经收到<br />我们将立即进行处理！</p>
+				<p class="complaint">你的投诉我们已经收到<br />我们将立即进行处理！</p>
+				<p class="support">感谢你的支持我们会做得更好~</p>
 				<div class="btn">返回</div>
 			</div>
+		</div>
+
+		<div class="selection">
+			<div class="option"></div>
 		</div>
 	</div>	
 	<div id="main">
 	<!-- <div id="mask"></div> -->
 		<div class="topCon">
 			<div class="content"> 
-				<p>奔跑的萌新</p>
+				<p class="userName"></p>
 				<div class="btn" id="repairBtn">我要报修</div>
 			</div>
 		</div>
@@ -112,7 +120,7 @@
 				<li>
 					<i class="icon icon1"></i>
 					<p class="t">申报人</p>
-					<p class="info">奔跑的萌新</p>
+					<p class="info userName">奔跑的萌新</p>
 				</li>
 				<li>
 					<i class="icon icon2"></i>
@@ -140,7 +148,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="finished" class="process-finished none">  <!-- none -->
+	<div id="finished" class="process-finished none">  <!-- none -->   <!-- Finished START -->
 		<div class="main">
 			<ul>
 				<li>
@@ -170,12 +178,9 @@
 			</ul>
 			<div class="picCon">
 				<img class="pic" src="./img/demo.jpg">
-			<!-- <div class ="submit">返回</div> -->
 			</div>
-			<!-- <div class="response">
-				<div class="t"><i></i></div>
-			</div>
--->		</div>
+						
+ 		</div>
 		<div class="response">
 			<div class="t">
 				<i class="icon"></i>
@@ -199,64 +204,10 @@
 			</form>
 		</div>
 	</div>
-	<div id="repair" style="display: none;">
-		<div class="topCon">
-			<div class="info">
-				<i class="icon icons icon1"></i><span class="event Name">申报人</span>
-				<span class="middle name">奔跑的萌新</span>
-				<i class="icon right lock"></i>
-			</div>
-			<div class="info">
-				<i class="icon icons icon2"></i><span class="event Phone">电话</span>
-				<input type="phone" class="text" name="phone" maxlength="10" placeholder="请输入常用的手机号码">
-			</div>
-			<div class="info">
-				<i class="icon icons icon3"></i><span class="event Type">服务类型</span>
-				<span class="middle slt">点击选择分类</span>
-				<i class="icon right"></i>
-			</div>
-			<div class="info">
-				<i class="icon icons icon4"></i><span class="event Project">服务项目</span>
-				<span class="middle slt">点击选择分类</span>
-				<i class="icon right"></i>
-			</div>
-			<div class="info">
-				<i class="icon icons icon5"></i><span class="event Project"></span>
-				<span class="middle slt">点击请选择服务项目</span>
-				<i class="icon right"></i>
-			</div>
-			<div class="info">
-				<i class="icon icons icon6"></i><span class="event Address">详细地址</span>
-				<span class="middle slt">请选择区域</span>
-				<i class="icon right"></i>
-			</div>
-			<div class="info">
-				<i class="icon icons icon7"></i><span class="event Project"></span>
-				<input type="phone" class="text" name="phone" maxlength="10" placeholder="请输入十个字以内的地址">
-				<i class="icon right"></i>
-			</div>
-		</div>
-		<div class="bottomCon">
-			<div class="info clearfix">
-				<i class="icon left"></i>
-				<p class="t">标题</p>
-				<input class="text" type="text" name="title" placeholder="请输入十个字以内">
-			</div>
-			<hr />
-			<textarea maxlength="200" class="text area" placeholder="请在这里输入详细描述，二百字以内哦~"></textarea>
-			<div class="uploadPicCon clearfix">
-				<div class="pic"><img src="./img/demo.jpg"></div>
-				<div class="pic upload"><img src="./img/camera.jpg"></div>
-			</div>
-			<hr class="n-margin" /> 
-			<div class="submitBtn">提交</div>
-		</div>
-	</div>
 </body>
 </html>
 <script type="text/javascript" src='./js/pack-0.5.js'></script>
 <script type="text/javascript">
-
 		var winH = getWinHeight(),
 		winW = getWinWidth(),
 		main = $$('#main'), 
@@ -305,26 +256,83 @@
 		    allInput = $$('input'),
 		    mask = $$('#mask'),  //全局遮罩层
 		    closeMaskBtn = $$('#mask .close'),  //遮罩层里面 信息的关闭按钮
+		    maskReturnBtn = $$('#mask .btn'), //所有弹框里面返回按钮
+		    oUserName = $$('#main > div.topCon > div > p'),  //dom username 
+		    userName = '';   //用户名 	(全局变量)
 		    content = $$('#content');
 		   	console.log(repairSubmitBtn);
 		main.style.height = winH + 'px';
 		main.style.width = winW + 'px';
 		content.style.height = winH - getIntStyle(firstArea,'height') - secondArea.offsetHeight + 'px';
 
-		// ajax({
-		// 	'url' : 'http://192.168.199.244/MagicLoop/index.php?s=/addon/BaoxiuAndTousu/Common/homeView&openid=ouRCyjndQXTkjgtAuzUG4F3MZNa8',
-		// 	'method' : 'post',
-		// 	'success' : function (data) {
-		// 		var dataJson = JSON.parse(data);
-		// 		console.log(dataJson.status);
-		// 		console.log(JSON.parse(data))
-		// 		$$('#main > div.topCon > div > p').innerHTML = dataJson.data.stuName;
+		var loading = function (all,distance,time) {   //所有圆点 distance:  距离  time:周期
+		var per_deg = 360/all.length;
+		console.log(per_deg);
+		l = all.length;
+		for (var i = 0; i < l; i++) {
+			// all[i].className = ''
+			all[i].index = i;
+			// all[i].style.cssText = 'transform: rotate(' + (all[i].index * per_deg) + 'px) translate(' + distance +'px,0);'
+			all[i].style.cssText = 'transform: rotate('+ (all[i].index * per_deg) +'deg) translateX(50px) ;opacity: .5' ;
+		}
+		per_time = time / l;
+		var start = 0;
+		var timer = setInterval (function () {
+			if (start >= l - 1) {
+				start = 0;
+			}else {
+				start ++;
+			}
+			console.log(start)
+			var currentDom = all[start],
+				currentIndex = currentDom.index,
+				preDom,
+				prepreDom;
+				if (currentIndex == 0) {
+					preDom = all[l-1];
+					prepreDom = all[l-2];
+				}else if (currentIndex == 1) {
+					preDom = all[0]
+					prepreDom = all[l-1];
+				} else {
+					preDom = all[currentIndex-1];
+					prepreDom = all[currentIndex-2];
+				}
 
-		// 	},
-		// 	'error' : function () {
-		// 		alert('error');
-		// 	}
-		// })
+			currentDom.style.opacity = .9;
+			preDom.style.opacity = .7;
+			prepreDom.style.opacity = .5;
+			
+		},per_time)
+	}
+
+
+		ajax({
+			'url' : 'http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/index/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8',
+			'method' : 'post',
+			'success' : function (data) {
+				var dataJson = JSON.parse(data);
+				if (dataJson.status) {  
+					userName = dataJson.data.stuInfo.realname;
+					oUserName.innerHTML = userName;
+
+				}else { /*加载失败*/
+					alert('加载失败');
+				};
+			},
+			'error' : function () {
+				alert('error');
+				mask.className = 'offLine';
+			},
+		})
+
+		function loadData () {  //刷新全局信息
+			var userNamCon = $$('.userName'),
+				l = userNameCon.length;
+			for (var i = 0; i < l; i++) {
+				userNameCon[i].innerHTML = userName;
+			}
+		}
 
 		on(slts,'click',function(){   /*点击选项卡事件*/
 			removeClass(slts,'select');
@@ -346,9 +354,7 @@
 		on (repairSubmitBtn, 'click', function () {
 			repairPage.style.display = 'none';
 		})
-		for (var i = 0; i < stars.length; i++) {
-			stars[i].index = i;
-		}
+		
 		on(finishedList,'click',function(){  //所有已完成列表点击之后弹出已完成表单
 			removeClass(finishedPage,'none');
 		})
@@ -365,6 +371,33 @@
 			addClass(mask,'none');
 
 		})
+		on(maskReturnBtn,'click',function (){
+
+		})
+
+		var Status = {
+			offLine: function () {  //网络不稳定
+				mask.className = '';
+				addClass(mask,'offLine');
+			},
+			complaint: function () { //收到投訴
+				mask.className = '';
+				addClass(mask,'complaint');
+			},
+			supprt: function () {  //感謝支持
+				mask.className = '';
+				addClass(mask,'support');
+			},
+			notFinish: function () {  //信息為填寫完成
+				mask.className = '';
+				addClass(mask,'notFinish');
+			}				
+		}
+		// Status.offLine();
+		// Status.complaint();
+		for (var i = 0; i < stars.length; i++) {
+			stars[i].index = i;
+		}
 		on(stars,'click',function () {  //小星星点击触发事件
 			giveStar(this.index);
 		})
@@ -378,4 +411,15 @@
 			}
 		}
 	})()
+
+//testing   
+// var string = '1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,';
+// asasas
+// alert(string.slice(2,4));
+// var array = [1,2,3,4,5];
+
+// for (var i = ; i >= 0; i--) {
+	
+// }
+
 </script>
