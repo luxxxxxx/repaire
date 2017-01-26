@@ -28,9 +28,6 @@ var $$ = function ( obj ) {
 		}
 	}
 },
-test = function (blabla) {
-	return console.log(blabla)
-},
 hasClass = function ( ele , classN ) {
 	var reg = new RegExp('\\b' + classN + '\\b');
 	return reg.test( ele.className ); 

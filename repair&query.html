@@ -11,15 +11,22 @@
 	</script>
 </head>
 <body>
-	<div id="mask" class='loading'>  <!-- class：none 关闭mask notFinish：信息输入未完整； offLine: 网络开小差 complaint: 收到投诉 support： 感谢支持 -->
+	<div id="mask" class='loading'>  <!-- class：none 关闭mask notFinish：信息输入未完整； offLine: 网络开小差 complaint: 收到投诉 support： 感谢支持 damn : 报修申请失败-->
 		<div class="loading">
-			
+			<li class="o"></li>
+			<li class="o"></li>
+			<li class="o"></li>
+			<li class="o"></li>
+			<li class="o"></li>
+			<li class="o"></li>
+			<li class="o"></li>
+			<li class="o"></li>
 		</div>
 		<div class="msg"> 
 			<div class="close"></div>
 			<p class="notFinish">你的数据还没有填写完整哟~</p>
 			<p class="offLine">网络开小差了<br />稍后再来试试吧~</p>
-			<!-- <p>稍后再来试试吧~</p> -->
+			<p class="damn">报修失败，请稍后再试试吧~</p>
 			<div class="btn">返回</div>
 		</div>
 		<div class="envelope">  
@@ -42,7 +49,7 @@
 		<div class="topCon">
 			<div class="content"> 
 				<p class="userName"></p>
-				<div class="btn" id="repairBtn">我要报修</div>
+				<div class="btn" id="repairBtn"><a href="./repair.html">我要报修</a></div>
 			</div>
 		</div>
 		<div class="sltCon clearfix">
@@ -54,59 +61,11 @@
 				<div class="icon"></div>
 				<p>你还没有报修过噢</p>
 			</div>
-			<ul class="finished mainContent"><!-- 主页面下面已完成 和待解决 按钮 -->
-				<li>
-					<p>修空调</p>
-					<div class="status">
-						<div class="t">
-							<i></i>
-							<p>已完成</p>
-						</div>
-						<div class="time">2016年9月24日</div>
-					</div>
-				</li>
+			<ul class="finished mainContent"><!-- 主页面下面已完成 和待解决  -->
+				
 			</ul>
-			<ul class="waittosolve mainContent" style="display: none;">  <!-- 主页面下面已完成 和待解决 按钮 -->
-				<li>
-					<p>修空调</p>
-					<div class="status">
-						<div class="t">
-							<i></i>
-							<p>处理中</p>
-						</div>
-						<div class="time">2016年9月24日</div>
-					</div>
-				</li>
-				<li>
-					<p>修空调</p>
-					<div class="status">
-						<div class="t">
-							<i></i>
-							<p>处理中</p>
-						</div>
-						<div class="time">2016年9月24日</div>
-					</div>
-					
-				</li><li>
-					<p>修空调</p>
-					<div class="status">
-						<div class="t">
-							<i></i>
-							<p>处理中</p>
-						</div>
-						<div class="time">2016年9月24日</div>
-					</div>
-				</li><li>
-					<p>修空调</p>
-					<div class="status">
-						<div class="t">
-							<i></i>
-							<p>处理中</p>
-						</div>
-						<div class="time">2016年9月24日</div>
-					</div>
-					
-				</li>
+			<ul class="waittosolve mainContent" style="display: none;">  <!-- 主页面下面已完成 和待解决  -->
+				
 			</ul>
 		</div>
 	</div>
@@ -137,7 +96,7 @@
 					<p class="t">标题</p>
 					<p class="info">学生公寓区 宁静苑4舍</p>
 				</li>
-				<div id="desc" class="desc">
+				<div id="desc1" class="desc">
 					我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，
 				</div>
 				<div class="spread"><span>展开</span><i class="arrowDown"></i></div>
@@ -171,7 +130,7 @@
 					<p class="t">标题</p>
 					<p class="info">学生公寓区 宁静苑4舍</p>
 				</li>
-				<div id="desc" class="desc">
+				<div id="desc2" class="desc">
 					我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，我也不知道为什么就不转了，反正他就是不转了，
 				</div>
 				<div class="spread"><span>展开</span><i class="arrowDown"></i></div>
@@ -181,7 +140,7 @@
 			</div>
 						
  		</div>
-		<div class="response">
+		<div class="response false">   <!-- false ： 评论已经提交过不能修改 -->
 			<div class="t">
 				<i class="icon"></i>
 				<p>情况反馈</p>
@@ -196,11 +155,14 @@
 					</div>
 				</div>
 			</div>
-			<form>
+			<form method="post" onsubmit="return false">
 				<div class="textCon">
+					<div class="bind"></div>
 					<textarea maxlength="200" placeholder="请在这里输入详细反馈，二百字以内哦~"></textarea>
 				</div>
 				<div class="submitBtn">提交</div>
+				<input type="number" name="starNum" style="display: none;">
+				<input type="submit" name="" style="display: none;">
 			</form>
 		</div>
 	</div>
@@ -215,10 +177,11 @@
 		firstArea = $$('#main .topCon'),  //第一块区域
 		secondArea = $$('#main .sltCon'),   //第二块区域*/
 		extraArea = $$('#content'),
-		processingPage = $$('.process-finished'),
 		MainContent = $$('.process-finished > .main'),
 		stars = $$('.star'),
-		hint = $$('.process-finished .hint');
+		hint = $$('.process-finished .hint'),
+		hrefArr = window.location.href.split('/'),
+		openId = hrefArr[hrefArr.length - 1].split('?')[1];
 		var resetSize = function () {//初始化浏览器窗口大小
 			winH = getWinHeight(),
 			winW = getWinWidth();
@@ -243,7 +206,6 @@
 		    returnBtn = $$('.return'),  //返回按钮
 		    secondArea = $$('#main > .sltCon'),
 		    mainContents = $$('.mainContent'),
-		    repairBtn = $$('#repairBtn'),  //我要报修按钮
 		    slts = $$('.sltCon .slt'),  // 已完成和 待解决 两个按钮
 		    finishedList = $$('#content > ul.finished.mainContent li'),  //已完成下拉列表所有li
 		    processingList = $$('#content > ul.waittosolve.mainContent li'), //待解决下拉列表所有li
@@ -258,81 +220,199 @@
 		    closeMaskBtn = $$('#mask .close'),  //遮罩层里面 信息的关闭按钮
 		    maskReturnBtn = $$('#mask .btn'), //所有弹框里面返回按钮
 		    oUserName = $$('#main > div.topCon > div > p'),  //dom username 
-		    userName = '';   //用户名 	(全局变量)
-		    content = $$('#content');
-		   	console.log(repairSubmitBtn);
+		    repairBtn = $$('#repairBtn'),
+		    userName = '',   //用户名 	(全局变量)
+		    finishedContent = $$('#content > ul.finished.mainContent'),  //已完成ul
+		    unfinishedContent = $$('#content > ul.waittosolve.mainContent'),  //待解决ul
+		    response = $$('.response'),  //回馈兰
+		    content = $$('#content'),
+		    repairA = $$('#repairBtn > a'),
+		    form = $$('#finished > div.response > form'),
+		    commentUrl;
+		    repairA.href = './repair.html?' + openId;
 		main.style.height = winH + 'px';
 		main.style.width = winW + 'px';
 		content.style.height = winH - getIntStyle(firstArea,'height') - secondArea.offsetHeight + 'px';
-
-		var loading = function (all,distance,time) {   //所有圆点 distance:  距离  time:周期
-		var per_deg = 360/all.length;
-		console.log(per_deg);
-		l = all.length;
-		for (var i = 0; i < l; i++) {
-			// all[i].className = ''
-			all[i].index = i;
-			// all[i].style.cssText = 'transform: rotate(' + (all[i].index * per_deg) + 'px) translate(' + distance +'px,0);'
-			all[i].style.cssText = 'transform: rotate('+ (all[i].index * per_deg) +'deg) translateX(50px) ;opacity: .5' ;
-		}
-		per_time = time / l;
-		var start = 0;
-		var timer = setInterval (function () {
-			if (start >= l - 1) {
-				start = 0;
-			}else {
-				start ++;
+		var allo = $$('#mask .loading .o');
+			var loading = function (all,distance,time) {   //所有圆点 distance:  距离  time:周期
+			var per_deg = 360/all.length;
+			console.log(per_deg);
+			l = all.length;
+			for (var i = 0; i < l; i++) {
+				all[i].index = i;
+				all[i].style.cssText = 'transform: rotate('+ (all[i].index * per_deg) +'deg) translateX(50px) ;opacity: .5' ;
 			}
-			console.log(start)
-			var currentDom = all[start],
-				currentIndex = currentDom.index,
-				preDom,
-				prepreDom;
-				if (currentIndex == 0) {
-					preDom = all[l-1];
-					prepreDom = all[l-2];
-				}else if (currentIndex == 1) {
-					preDom = all[0]
-					prepreDom = all[l-1];
-				} else {
-					preDom = all[currentIndex-1];
-					prepreDom = all[currentIndex-2];
+			per_time = time / l;
+			var start = 0;
+			var timer = setInterval (function () {
+				if (start >= l - 1) {
+					start = 0;
+				}else {
+					start ++;
 				}
+				var currentDom = all[start],
+					currentIndex = currentDom.index,
+					preDom,
+					prepreDom;
+					if (currentIndex == 0) {
+						preDom = all[l-1];
+						prepreDom = all[l-2];
+					}else if (currentIndex == 1) {
+						preDom = all[0]
+						prepreDom = all[l-1];
+					} else {
+						preDom = all[currentIndex-1];
+						prepreDom = all[currentIndex-2];
+					}
 
-			currentDom.style.opacity = .9;
-			preDom.style.opacity = .7;
-			prepreDom.style.opacity = .5;
-			
-		},per_time)
-	}
-
+				currentDom.style.opacity = .9;
+				preDom.style.opacity = .6;
+				prepreDom.style.opacity = .3;
+			},per_time)
+		}
+		loading(allo,50,2000)  
 
 		ajax({
-			'url' : 'http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/index/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8',
+			// 'url' : 'http://172.33.16.137/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/index/openid/' + openId + '',
+			'url' : 'http://172.33.16.137/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/index/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8',
 			'method' : 'post',
 			'success' : function (data) {
-				var dataJson = JSON.parse(data);
+				var dataJson = JSON.parse(data),
+					finishedJson = dataJson.data.finished,
+					unfinishedJson = dataJson.data.unfinished,
+					commentUrl = dataJson.data.remarkUrl;
+					
+				form.setAttribute('action',commentUrl);
+
 				if (dataJson.status) {  
 					userName = dataJson.data.stuInfo.realname;
+					console.log(dataJson.data.stuInfo)
 					oUserName.innerHTML = userName;
-
-				}else { /*加载失败*/
-					alert('加载失败');
+					mask.className = 'none';  //加载成功之后取消家在动画
+					if (finishedJson.length != 0) {
+						var l = finishedJson.length;
+						console.log(l)
+						for (var i = 0; i < l; i++) {
+							loadData(finishedJson[i],finishedContent);
+						}
+					}
+					console.log(unfinishedJson)
+					if (unfinishedJson.length != 0) {
+						var l = unfinishedJson.length;
+						for (var i = 0; i < l; i++) {
+							loadData(unfinishedJson[i],unfinishedContent);
+						}
+					}
+				} else { /*加载失败*/
+					alert('加载失败')
 				};
 			},
 			'error' : function () {
-				alert('error');
 				mask.className = 'offLine';
-			},
+			}
 		})
 
-		function loadData () {  //刷新全局信息
-			var userNamCon = $$('.userName'),
-				l = userNameCon.length;
-			for (var i = 0; i < l; i++) {
-				userNameCon[i].innerHTML = userName;
-			}
+		function loadData (dataJson,targetDom) {  //刷新全局信息
+				console.log(dataJson.wx_bxsj);
+				try {
+					var bxsj = dataJson.wx_bxsj.split(' ')[0].split('-'),  //报修时间（将年月日处理成数组的三个元素）
+					year = bxsj[0],
+					month = bxsj[1],
+					day = bxsj[2];
+				}catch(e) {
+
+				}
+			var bt = dataJson.wx_bt,  //标题
+				picUrl = dataJson.wx_picUrl,  //图片地址
+				wczt = dataJson.wx_wxztm,  //完成状态
+				tel = dataJson.wx_bxdh, //报修电话
+				//userName 用户名
+				detailAddress = dataJson.wx_bxdd,  //详细地址
+				desc = dataJson.wx_bxnr,  //描述详情
+				comment = dataJson.wx_sfkhf;  //是否能够选择
+				var oLi = document.createElement('li'),
+					pt = document.createElement('p'),
+					oDiv1 = document.createElement('div'),  //status
+					oDiv2 = document.createElement('div'),  //t
+					oDiv3 = document.createElement('div'),  //div3
+					oI = document.createElement('i'),
+					oP = document.createElement('p');
+					oP.innerHTML = wczt;
+					oDiv1.className = 'status';
+					oDiv2.className = 't'
+					pt.innerHTML = bt;
+					oDiv3.className = 'time';
+					oDiv3.innerHTML = ''+year+'年'+month+'月'+day+'日';
+					console.log(bt);
+					oLi.appendChild(pt);
+					oDiv2.appendChild(oI);
+					oDiv2.appendChild(oP);
+					oDiv2.appendChild(oDiv3);
+					oDiv1.appendChild(oDiv2);
+					oLi.appendChild(oDiv1);
+					oLi.setAttribute('detailAddress',detailAddress);
+					oLi.setAttribute('tel',tel);
+					oLi.setAttribute('title',bt);
+					oLi.setAttribute('imgSrc',picUrl);
+					oLi.setAttribute('comment',comment);
+					oLi.setAttribute('desc',desc);
+					if (targetDom === finishedContent) {
+						oLi.addEventListener('click',function() {
+							var infos = finishedPage.querySelectorAll('.main li p.info');
+							infos[0].innerHTML = userName;
+							infos[1].innerHTML = this.getAttribute('tel');
+							infos[2].innerHTML = this.getAttribute('detailAddress');
+							infos[3].innerHTML = this.getAttribute('title');	
+							$$('#desc2').innerHTML = this.getAttribute('desc');
+							$$('#finished > div.main > div > img').src = this.getAttribute('imgSrc');
+							var isComment = this.getAttribute('comment');
+							var btn = $$('#finished > div.response > form > div.submitBtn');
+							if (isComment == '否') {  //不能够继续评价
+								addClass(response,'false');
+								btn.innerHTML = '返回';
+								finishedPageSubmitBtn.onclick = function () {
+									addClass(finishedPage,'none');
+								}
+							}else {
+								removeClass(response,'false');
+								btn.innerHTML = '提交';
+								finishedPageSubmitBtn.onclick = function () {
+									;
+								}
+							}
+							removeClass(finishedPage,'none');
+							console.log($$('#desc2'));
+							var imgSrc = this.getAttribute('imgSrc');
+							if (imgSrc == 'undefined') {
+								$$('#finished > div.main > div').innerHTML = '';
+							} else {
+								$$('#finished > div.main > div').innerHTML = '<img class = "pic" src= '+ imgSrc +'  />';
+							}
+						})
+					} else {
+						oLi.addEventListener('click',function () {
+							removeClass(processingPage,'none');
+							var infos = processingPage.querySelectorAll('.info');
+							infos[0].innerHTML = userName;
+							infos[1].innerHTML = this.getAttribute('tel');
+							infos[2].innerHTML = this.getAttribute('detailAddress');
+							infos[3].innerHTML = this.getAttribute('title');
+							$$('#desc1').innerHTML = this.getAttribute('desc');
+							var imgSrc = this.getAttribute('imgSrc'),
+								img = $$('#processing > div.main > div > img');
+							if (imgSrc == 'undefined') {
+								img.style.display = 'none';
+							} else {
+								img.style.display = 'block';
+								img.src = imgSrc;
+							}
+						});
+
+					}
+					targetDom.appendChild(oLi);
 		}
+
+
 
 		on(slts,'click',function(){   /*点击选项卡事件*/
 			removeClass(slts,'select');
@@ -349,32 +429,28 @@
 			addClass(processingPage,'none');
 		})
 		on (repairBtn, 'click', function(){  //我要报修按钮点击后  打开我要报修页面 
-			repairPage.style.display = 'block';
+
 		})
 		on (repairSubmitBtn, 'click', function () {
 			repairPage.style.display = 'none';
 		})
 		
-		on(finishedList,'click',function(){  //所有已完成列表点击之后弹出已完成表单
-			removeClass(finishedPage,'none');
-		})
-		on(finishedPageSubmitBtn,'click',function(){  //已完成分页提交按钮
-			addClass(finishedPage,'none');
-		})
-		on(processingList,'click',function(){
-			removeClass(processingPage,'none');
-		})
+		// on(finishedList,'click',function(){  //所有已完成列表点击之后弹出已完成表单
+		// 	removeClass(finishedPage,'none');
+		// })
+		
+		// on(processingList,'click',function(){
+		// 	removeClass(processingPage,'none');
+		// })
 		on(processingPageSubmitBtn,'click',function (){
 			addClass(processingPage,'none');
 		})
 		on(closeMaskBtn,'click',function(){  //信息弹框里面关闭按钮
 			addClass(mask,'none');
-
 		})
 		on(maskReturnBtn,'click',function (){
 
 		})
-
 		var Status = {
 			offLine: function () {  //网络不稳定
 				mask.className = '';
@@ -399,7 +475,9 @@
 			stars[i].index = i;
 		}
 		on(stars,'click',function () {  //小星星点击触发事件
-			giveStar(this.index);
+			if (!hasClass(response,'false')) {
+				giveStar(this.index);
+			}
 		})
 		function giveStar (index) {
 			var l = stars.length;
@@ -412,14 +490,5 @@
 		}
 	})()
 
-//testing   
-// var string = '1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,';
-// asasas
-// alert(string.slice(2,4));
-// var array = [1,2,3,4,5];
-
-// for (var i = ; i >= 0; i--) {
-	
-// }
 
 </script>

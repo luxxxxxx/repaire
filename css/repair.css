@@ -315,6 +315,12 @@ body {
 #mask.notFinish .msg p.notFinish {
   display: block;
 }
+#mask.damn .msg {
+  display: block;
+}
+#mask.damn .msg p.damn {
+  display: block;
+}
 #mask .btn {
   width: 4.69333333rem;
   height: 1.2rem;

@@ -15,7 +15,7 @@
 			<div class="close"></div>
 			<p class="notFinish">你的数据还没有填写完整哟~</p>
 			<p class="offLine">网络开小差了<br />稍后再来试试吧~</p>
-			<!-- <p>稍后再来试试吧~</p> -->
+			<p class="damn">报修失败，请稍后再来试试吧~</p>
 			<div class="btn">返回</div>
 		</div>
 		<div class="envelope">  
@@ -24,7 +24,7 @@
 			</div>
 			<div class="bottom">
 				<p class="complaint">你的投诉我们已经收到<br />我们将立即进行处理！</p>
-				<p class="support">感谢你的支持我们会做得更好~</p>
+				<p class="support">你的要求我们已经收到~<br />我们将会尽快进行处理！</p>
 				<div class="btn">返回</div>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 		<div id="areaSelection" class="selection"></div>
 	</div>	
 	<div id="repair">
-	<form method="post" enctype='multipart/form-data' action="http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/saveRepairApp/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8">
+	<form method="post" enctype='multipart/form-data' action="http://172.33.16.137/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/saveRepairApp/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8">
 		<div class="topCon">
 			<div class="info">
 				<i class="icon icons icon1">
@@ -89,7 +89,7 @@
 			</div>
 			<div class="info">
 				<i class="icon icons icon7"></i><span class="event Project"></span>
-				<input type="text" class="text" name="bxdd" maxlength="10" placeholder="请输入十个字以内的地址">
+				<input type="text" id="bxdd" class="text" name="bxdd" maxlength="10" placeholder="请输入十个字以内的地址">
 				<i class="icon right"></i>
 			</div>
 		</div>
@@ -100,14 +100,15 @@
 				<input class="text" type="text" maxlength="10" name="bt" placeholder="请输入十个字以内">
 			</div>
 			<hr />
-			<textarea name="bxnr" maxlength="200" class="text area" placeholder="请在这里输入详细描述，二百字以内哦~"></textarea>
+			<textarea name="bxnr" id="bxnr" maxlength="200" class="text area" placeholder="请在这里输入详细描述，二百字以内哦~"></textarea>
 			<div class="uploadPicCon clearfix">
 				<div class="pic upload"><img src="./img/camera.jpg"></div>
-				<input type="file" name="file" id="pic_selector" accept="image/*" style="display: none;">
+				<input type="file" name="" id="pic_selector" accept="image/*" style="display: none;">
+				<input type="text" name="pics[]" style="display: none;">
 			</div>
 			<hr class="n-margin" /> 
 			<input id="inputEvent" type="text" name="fwxm" style="display: none;">
-			<input id="inputArea" type="text" name="bxqy" style="display: none;" >
+			<input id="inputArea" type="text" name="fwqy" style="display: none;" >
 			<div id="repairSubmit" class="submitBtn">提交</div>
 			<input id="inputSubmit" type="submit" style="display: none;"></div>
 
@@ -117,6 +118,7 @@
 </body>
 </html>
 <script type="text/javascript" src='./js/pack-0.5.js'></script>
+<script type="text/javascript" src= './js/jquery.min.js'></script>
 <script type="text/javascript" >
 	var serviceType = $$('#repair div.topCon div.info:nth-child(3)'),  //服务类型
 		serviceEvent = $$('#repair div.topCon div:nth-child(4)'), //服务项目 
@@ -144,6 +146,7 @@
 		inputDesc = $$('#repair div.bottomCon textarea'),
 		showImageBox = $$('#repair .bottomCon .uploadPicCon div:nth-child(1)'), //图片展示框
 		showImage = $$('#repair .bottomCon .uploadPicCon div:nth-child(1) img'),  //图片展示框里面的图片
+		imgURL = $$('#repair > form > div.bottomCon > div.uploadPicCon.clearfix > input[type="text"]:nth-child(3)'),  //图片上传 base64 码
 		onOff = false, //用来判断是否第二个框可以点击出来
 	    optionL = aserviceEvent.length,
 	    inputEvent = $$('#inputEvent'), //隐藏提交用到的input
@@ -161,7 +164,11 @@
 	    repairSubmit = $$('#repairSubmit'),  //提交按钮
 		inputSubmit = $$('#inputSubmit'),
 		msgClose = $$('#mask .close'),  //关闭消息
-		msgReturn = $$('#mask .btn');  //关闭信息
+		msgReturn = $$('#mask .btn'),  //关闭信息
+		delay_submit_flag = true,  //延迟提交 flag  true: 可以提交 ,false : 不能提交
+		ever_success_submit = false,  //是否成功提交过一次  false：没有 ,true : 有
+		hrefArr = window.location.href.split('/'),
+		openId = hrefArr[hrefArr.length - 1].split('?')[1];
 	for (var i = 0; i < optionL; i++) {  //生成服务类型选项框
 		var ooption = document.createElement('div'),
 			oi = document.createElement('i'),
@@ -182,7 +189,6 @@
 		})
 		selectionCon.appendChild(ooption);
 	}
-
 	var AreaOptionsL = aArea.length;
 	for (var i = 0; i < AreaOptionsL; i++) {   //地区选项
 		var ooption = document.createElement('div'),
@@ -212,7 +218,7 @@
 		addClass(this,'select');
 		$$('#repair div.topCon div:nth-child(3) span.middle.slt').innerHTML = this.lastElementChild.innerHTML;
 		bType = true;
-		console.log('bType = ' +bType);
+		console.log('bType = ' + bType);
 	});
 	// ajax ({
 	// 	'url' : 'http://192.168.199.243/Magicloop/index.php?s=/addon/BaoxiuAndTousu/common/savePic',
@@ -243,7 +249,7 @@
 	}
 
 	on(inputTel,'change',function () { //电话输入框
-		if (this.value != '' && this.value.length === 11) {
+		if (this.value != '') {
 			bTel = true;
 		} else {
 			bTel = false;
@@ -256,7 +262,7 @@
 		} else {
 			bDetailArea = false;
 		}
-		console.log('bDetailArea='+bDetailArea);
+		console.log('bDetailArea=' + bDetailArea);
 	})
 	on(inputTitle,'change',function (){  //标题输入框
 		if (this.value != '') {
@@ -297,27 +303,79 @@
 			bUploadImg = true;
 			picSelector.click();
 	})
-
-	picSelector.onchange = function () {
-		showImage.src = getObjectURL(this.files[0]);
-		removeClass(showImageBox,'upload');
+ 
+	picSelector.onchange = function () {   //图片压缩
+		var file = this.files[0],
+			reader = new FileReader ();
+			reader.readAsDataURL(file);
+			reader.onload = function (e) {
+				var resultURL = e.target.result;
+				var oImg = document.createElement('img');
+					oImg.src = resultURL;
+				var	cvs = document.createElement('canvas');
+					oImg.onload = function () {
+						cvs.width = 500;
+						cvs.height = 500;
+						var ctx = cvs.getContext('2d');
+						ctx.drawImage(this,0,0,cvs.width,cvs.height);
+						newImageData = cvs.toDataURL(file.type,0.5);
+						showImage.src = newImageData;
+						removeClass(showImageBox,'upload');
+						imgURL.value = newImageData;
+					}
+			}
 	}
 	on(repairSubmit,'click',function() {
 		if (bTel&&bEvent&&bArea&&bDetailArea&&bTitle&&bDesc&&bType) {
-				inputSubmit.click();
-			}else {
-				mask.className = 'notFinish';				
+			if (!ever_success_submit) {
+				if (delay_submit_flag) {
+					delay_submit_flag = false;
+					$.post(
+						'http://192.168.1.243/Magicloop/index.php?s=/addon/BaoxiuAndTousu/Baoxiu/saveRepairApp/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa81212ass',
+						{
+							'fwxm' : inputEvent.value,
+							'fwqy' : inputArea.value,
+							'bt' : inputTitle.value,
+							'bxdh' : inputTel.value,
+							'bxdd' : bxdd.value,
+							'bxnr' : inputDesc.value,
+							'pics[]' : imgURL.value
+						},
+						function(result){
+							if (result.status == 1) {  //报修成功
+								mask.className = 'support';
+								ever_success_submit = true;
+								$$('#mask > div.envelope > div.bottom > div').onclick = function () {
+									location.href = result.data.url;
+								}
+								$$('#mask > div.envelope > div.top > div').onclick = function () {
+									location.href = result.data.url;
+								}
+								on(mask,'touchstart',function () {
+									location.href = result.data.url;	
+								})
+							} else {
+								mask.className = 'damn';
+							}
+							delay_submit_flag = true;
+						},
+						'json'
+					)
+				}
 			}
+		} else {
+			mask.className = 'notFinish';				
+		};
 	})
+
+
 	on(msgClose,'click',function(){
 		mask.className = 'none';
 	});
 	on(msgReturn,'click',function(){
 		mask.className = 'none';
 	})
-	// on(mask,'click',function (e) {
-	// 	var ev = e || window.event;
-	// 	console.log(ev.target);
-	// })
+
+
 </script>
 

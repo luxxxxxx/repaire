@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<openId style='display: none;'>ouRCyjndQXTkjgtAuzUG4F3MZNa8</openId>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
 	<title>报修</title>
@@ -25,8 +26,8 @@
 			</div>
 		</div>
 		<div class="btnsCon">
-			<div class="btn bxcx">报修/查询</div>
-			<div class="btn jyts n-margin-t">建议/投诉</div>
+			<div class="btn bxcx"><a href="##">报修/查询</a></div>
+			<div class="btn jyts n-margin-t"><a href="##">建议/投诉</a></div>
 		</div>
 		<div class="mask"></div>
 	</div>
@@ -72,7 +73,6 @@
 	resetSize();
 	window.onresize = resetSize;
 	
-
 	(function () {
 		var closeBtn = $$('#noBind .close'),
 			main = $$('#main'),
@@ -107,10 +107,11 @@
 		for (var i = 0; i < bxcx.length; i++) {
 			bxcx[i].onOff = true;
 		}
-
-		ajax({
+		var openId = $$('openId').innerHTML;
+		if (openId != undefined ) {
+			ajax({
 			'method' : 'post',
-			'url' : 'http://192.168.199.244/Magicloop/index.php?s=/addon/BaoxiuAndTousu/common/homeview/openid/ouRCyjndQXTkjgtAuzUG4F3MZNa8',
+			'url' : 'http://192.168.199.243/Magicloop/index.php?s=/addon/BaoxiuAndTousu/common/homeview/openid/'+ openId +'',
 			'success' : function (data) {
 				var dataObj = JSON.parse(data);
 				status = dataObj.status;
@@ -120,26 +121,34 @@
 				tousuUrl = dataObj.data.tousuUrl;
 				oStuName.innerHTML = stuName; // 替换学生名字
 				console.log(status);
-				on(bxcx,'click',function () {
-					if (status) {
-						window.location.href = baoxiuUrl;
-					} else {
-						main.className = 'noBinding';
-					}
-				})
-				on(jyts,'click',function() {
-					if (status) {
-						window.location.href = tousuUrl;
-					} else {
-						main.className = 'noBinding';
-					}
-				})
+				// on(bxcx,'click',function () {
+				// 	if (status) {
+				// 		window.location.href = baoxiuUrl;
+				// 	} else {
+				// 		main.className = 'noBinding';
+				// 	}
+				// })
+				// on(jyts,'click',function() {
+				// 	if (status) {
+				// 		window.location.href = tousuUrl;
+				// 	} else {
+				// 		main.className = 'noBinding';
+				// 	}
+				// })
 			},
 			'error' : function () {
 
 			}
 		})
- 
+		} else {
+			alert('服务器错误 嘻嘻')
+		}
+		
+ 		var a1 = $$('#main > div.btnsCon > div.btn.bxcx > a'),
+		a2 = $$('#main > div.btnsCon > div.btn.jyts.n-margin-t > a');
+		a1.href = './repair&query.html?' + openId;  
+		a2.href = './repair.html?' + openId;
+
 		on(bxcx,'click',function () {
 			var This = this;
 			if (this.onOff) {

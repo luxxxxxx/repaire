@@ -1,133 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>标题</title>
-	<style type="text/css">
-		* {
-			margin: 0;
-			padding: 0;
-		}
-		#main {
-			position: relative;
-			width: 200px;
-			height: 200px;
-			border: 1px solid black;
-			margin: 200px auto;
-			background: #000;
-		}
-		ul {
-			position: absolute;
-			left: 100px;
-			top: 100px;
-			width: 0;
-			height: 0;
-		}
-		ul li {
-			position: absolute;
-			left: -5px;
-			top: -5px;
-			width: 10px;
-			height: 10px;
-			border-radius: 50%;
-			border: 1px solid black;
-			background: #fff;
-			list-style-type: none;
-			transition: .2s all linear;
-		}
-		ul li.o {
-			opacity: .5;
-
-		}
-		
-	/*	ul li:nth-child(1) {
-			transform: rotate(0) translate(50px,0) ;
-		}
-		ul li:nth-child(2) {
-			transform: rotate(45deg) translate(50px,0) ;
-		}
-		ul li:nth-child(3) {
-			transform: rotate(90deg) translate(50px,0) ;
-		}
-		ul li:nth-child(4) {
-			transform: rotate(135deg) translate(50px,0) ;
-		}
-		ul li:nth-child(5) {
-			transform: rotate(180deg) translate(50px,0) ;
-		}
-		ul li:nth-child(6) {
-			transform: rotate(225deg) translate(50px,0) ;
-		}
-		ul li:nth-child(7) {
-			transform: rotate(270deg) translate(50px,0) ;
-		}
-		ul li:nth-child(8) {
-			transform: rotate(315deg) translate(50px,0) ;
-		}
-		*/
-
-	</style>
+	<title>text</title>
 </head>
 <body>
-	<div id="main">
-		<ul>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-			<li class="o"></li>
-		</ul>
-	</div>
+	upload : <input id="upload" type="file" name="" />
+	create <input id="btn" type="button" name="see">
+	<div class="imgBox"></div>
 </body>
 </html>
-<script type="text/javascript">
-	var allLi = document.querySelectorAll('.o') 
-	var loading = function (all,distance,time) {   //所有圆点 distance:  距离  time:周期
-		var per_deg = 360/all.length;
-		console.log(per_deg);
-		l = all.length;
-		for (var i = 0; i < l; i++) {
-			// all[i].className = ''
-			all[i].index = i;
-			// all[i].style.cssText = 'transform: rotate(' + (all[i].index * per_deg) + 'px) translate(' + distance +'px,0);'
-			all[i].style.cssText = 'transform: rotate('+ (all[i].index * per_deg) +'deg) translateX(50px) ;opacity: .5' ;
-		}
-		per_time = time / l;
-		var start = 0;
-		var timer = setInterval (function () {
-			if (start >= l - 1) {
-				start = 0;
-			}else {
-				start ++;
-			}
-			console.log(start)
-			var currentDom = all[start],
-				currentIndex = currentDom.index,
-				preDom,
-				prepreDom;
-				if (currentIndex == 0) {
-					preDom = all[l-1];
-					prepreDom = all[l-2];
-				}else if (currentIndex == 1) {
-					preDom = all[0]
-					prepreDom = all[l-1];
-				} else {
-					preDom = all[currentIndex-1];
-					prepreDom = all[currentIndex-2];
-				}
 
-			currentDom.style.opacity = .9;
-			preDom.style.opacity = .7;
-			prepreDom.style.opacity = .5;
-			
-		},per_time)
-	}
-	loading(allLi,50,2000);
+<script type="text/javascript">
+	var fileInput = document.querySelector('#upload'),
+		body = document.querySelector('body'),
+		box = document.querySelector('.imgBox'),
+		create = document.querySelector('#btn');
+
+		create.onclick = function () {
+			var file = fileInput.files[0];
+			if (!file) {
+				alert('请选择文件');
+			} else {
+				var reader = new FileReader ();
+				reader.readAsDataURL(file);
+				reader.onload = function (e) {
+					var resultURL = e.target.result;
+					var oImg = document.createElement('img');
+					oImg.src = resultURL;
+					var cvs = document.createElement('canvas');
+					oImg.onload = function () {
+						var W = 200,
+							H = 200;
+					cvs.style.width = '2.2rem';
+					cvs.style.height = '2.2rem';
+					var ctx = cvs.getContext('2d');
+					ctx.drawImage(this,0,0,cvs.width,cvs.height);
+					newImageData = cvs.toDataURL(file.type,0.5);
+					box.innerHTML = '<img src="' + newImageData + '"   />';
+					console.log(1)
+					}					
+				}
+			}
+		}
 
 </script>

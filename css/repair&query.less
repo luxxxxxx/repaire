@@ -105,6 +105,10 @@ body {
 			padding-left: 28/75rem;
 			border-bottom: 2px solid rgba(239,238,238,1);
 			p {
+				max-width: 12em;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 				float: left;
 				line-height: 203/75rem;
 				font-size: 32/75rem;
@@ -225,6 +229,16 @@ body {
 			padding: 40/75rem;
 			margin-top: 45/75rem;
 			background-color: #fff;
+			&.false {
+				.bind {
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					background: rgba(0,0,0,.2);
+				}
+			}
 			.t {
 				height: 34/75rem;
 				padding-bottom: 39/75rem;
@@ -274,6 +288,7 @@ body {
 				}
 			}
 			.textCon {
+				position: relative;
 				textarea {
 					display: block;
 					width: 100%;
@@ -788,6 +803,14 @@ body {
 			}
 		}
 	}
+	&.damn {
+		.msg {
+			display: block;
+			p.damn {
+				display: block;
+			}
+		}
+	}
 	.btn {
 		width: 4.69333333rem;
 		height: 1.2rem;
@@ -871,6 +894,7 @@ body {
 			display: block;
 		}
 	}
+
 	.envelope {
 		display: none;
 		position: fixed;
@@ -913,6 +937,27 @@ body {
 			.btn {
 				margin-top: 0.50666667rem;
 			}
+		}
+	}
+}
+#repairBtn > a {
+  color: #93d6da;
+}
+
+#mask.loading {
+	.loading {
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		.o {
+			position: absolute;
+			width: 0.3rem;
+			height: 0.3rem;
+			border-radius: 50%;
+			opacity: .8;
+			background: #fff;
+			transition: .6s all ease;
 		}
 	}
 }

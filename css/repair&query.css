@@ -109,6 +109,10 @@ body {
   border-bottom: 2px solid #efeeee;
 }
 #content .mainContent li p {
+  max-width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   float: left;
   line-height: 2.70666667rem;
   font-size: 0.42666667rem;
@@ -224,6 +228,14 @@ body {
   margin-top: 0.6rem;
   background-color: #fff;
 }
+.process-finished#finished .response.false .bind {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
 .process-finished#finished .response .t {
   height: 0.45333333rem;
   padding-bottom: 0.52rem;
@@ -271,6 +283,9 @@ body {
 .process-finished#finished .response .t .satisfy .starBox .star.fill {
   background: url('../img/starFill.jpg') no-repeat center center;
   background-size: cover;
+}
+.process-finished#finished .response .textCon {
+  position: relative;
 }
 .process-finished#finished .response .textCon textarea {
   display: block;
@@ -449,7 +464,284 @@ body {
   background: linear-gradient(to right, #58c5cb, #6be3a3);
   /* 标准的语法 */
 }
-
+#repair {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+#repair .mask {
+  z-index: 50;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+#repair .mask .return {
+  position: absolute;
+  left: 50%;
+}
+#repair .topCon {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0.53333333rem 0.53333333rem 0;
+}
+#repair .topCon .info {
+  height: 0.98666667rem;
+  margin-bottom: 0.53333333rem;
+  box-sizing: border-box;
+  padding-bottom: 0.53333333rem;
+}
+#repair .topCon .info:nth-child(1) i.icon.right {
+  width: 0.37333333rem;
+  height: 0.42666667rem;
+  background: url('../img/lock.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .topCon .info:nth-child(5) i.icon {
+  visibility: hidden;
+}
+#repair .topCon .info:nth-child(5) i.icon.right {
+  visibility: visible;
+}
+#repair .topCon .info:nth-child(5) span.event {
+  visibility: hidden;
+}
+#repair .topCon .info:nth-child(5) span.middle.slt {
+  color: #999999;
+}
+#repair .topCon .info:nth-child(7) {
+  margin: 0;
+}
+#repair .topCon .info:nth-child(7) i.icon {
+  visibility: hidden;
+}
+#repair .topCon .info:nth-child(7) i.icon.right {
+  visibility: hidden;
+}
+#repair .topCon .info:nth-child(7) span.event {
+  visibility: hidden;
+}
+#repair .topCon .info:nth-child(7) span.middle.slt {
+  color: #999999;
+}
+#repair .topCon .info i.icon {
+  display: block;
+  margin-right: 0.26666667rem;
+  box-sizing: border-box;
+  width: 0.42666667rem;
+  height: 0.48rem;
+}
+#repair .topCon .info i.icon.right {
+  float: right;
+  background: url('../img/arrowDown1.jpg') no-repeat center center;
+  width: 0.36rem;
+  height: 0.21333333rem;
+  margin-right: 0;
+  background-size: cover;
+}
+#repair .topCon .info i.icon.icons {
+  float: left;
+}
+#repair .topCon .info i.icon.icons.icon1 {
+  width: 0.42666667rem;
+  height: 0.48rem;
+  background: url('../img/icon1.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .topCon .info i.icon.icons.icon2 {
+  width: 0.42666667rem;
+  height: 0.42666667rem;
+  background: url('../img/icon2.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .topCon .info i.icon.icons.icon3 {
+  width: 0.42666667rem;
+  height: 0.42666667rem;
+  background: url('../img/icon7.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .topCon .info i.icon.icons.icon4 {
+  width: 0.42666667rem;
+  height: 0.36rem;
+  background: url('../img/icon8.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .topCon .info i.icon.icons.icon6 {
+  position: relative;
+  top: -0.06666667rem;
+  width: 0.42666667rem;
+  height: 0.48rem;
+  background: url('../img/icon3.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .topCon .info i.icon.icons.rigyht {
+  visibility: hidden;
+}
+#repair .topCon .info .event {
+  width: 1.82666667rem;
+  height: 0.46666667rem;
+  box-sizing: border-box;
+  float: left;
+  line-height: 0.46666667rem;
+  color: #333333;
+  margin-right: 0.66666667rem;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.42666667rem;
+}
+#repair .topCon .info .event.Type {
+  letter-spacing: 0.04rem;
+}
+#repair .topCon .info .event.Project {
+  letter-spacing: 0.04rem;
+}
+#repair .topCon .info .event.Name {
+  letter-spacing: 0.26666667rem;
+}
+#repair .topCon .info .event.Phone {
+  letter-spacing: 0.93333333rem;
+}
+#repair .topCon .info .event.Address {
+  letter-spacing: 0.04rem;
+}
+#repair .topCon .info span.middle {
+  height: 0.46666667rem;
+  line-height: 0.46666667rem;
+  float: left;
+  color: #747474;
+  font-size: 0.42666667rem;
+}
+#repair .topCon .info span.middle.slt {
+  letter-spacing: 0.04rem;
+  color: #666666;
+}
+#repair .topCon .info span.slt {
+  height: 0.46666667rem;
+  line-height: 0.46666667rem;
+  float: left;
+  color: #747474;
+  font-size: 0.42666667rem;
+}
+#repair .topCon .info input.text {
+  outline: none;
+  border: none;
+  height: 0.46666667rem;
+  float: left;
+  color: #999999;
+  width: 5.33333333rem;
+  background: #fff;
+  font-size: 0.42666667rem;
+}
+#repair .bottomCon {
+  box-sizing: border-box;
+  padding: 0.50666667rem 0.53333333rem;
+  margin-top: 0.6rem;
+  background: #fff;
+}
+#repair .bottomCon hr {
+  border: 1px solid #f3f1f1;
+  margin-bottom: 0.53333333rem;
+}
+#repair .bottomCon .info {
+  padding-bottom: 0.53333333rem;
+}
+#repair .bottomCon .info i.icon.left {
+  position: relative;
+  top: -0.08rem;
+  float: left;
+  width: 0.42666667rem;
+  height: 0.49333333rem;
+  margin-right: 0.26666667rem;
+  background: url('../img/icon4.jpg') no-repeat center center;
+  background-size: cover;
+}
+#repair .bottomCon .info .t {
+  float: left;
+  width: 1.82666667rem;
+  height: 0.46666667rem;
+  line-height: 0.46666667rem;
+  box-sizing: border-box;
+  color: #333333;
+  font-size: 0.42666667rem;
+  margin-right: 0.66666667rem;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0.93333333rem;
+}
+#repair .bottomCon .info input.text {
+  outline: none;
+  border: none;
+  height: 0.46666667rem;
+  float: left;
+  color: #999999;
+  width: 5.33333333rem;
+  background: #fff;
+  font-size: 0.42666667rem;
+}
+#repair .bottomCon .text.area {
+  display: block;
+  resize: none;
+  outline: none;
+  height: 2.13333333rem;
+  width: 8.93333333rem;
+  border: none;
+  color: #999;
+  font-size: 0.42666667rem;
+  margin-bottom: 0.04rem;
+}
+#repair .bottomCon .uploadPicCon {
+  margin-bottom: 0.50666667rem;
+}
+#repair .bottomCon .uploadPicCon div.pic {
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid #e9e9e9;
+  overflow: hidden;
+  margin-right: 0.32rem;
+}
+#repair .bottomCon .uploadPicCon div.pic.upload img {
+  width: 1.0rem;
+  height: 0.78666667rem;
+}
+#repair .bottomCon .uploadPicCon div.pic img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+}
+#repair .bottomCon .submitBtn {
+  margin: 0.37333333rem auto;
+  top: 2.4rem;
+  text-indent: 0.29333333rem;
+  letter-spacing: 0.29333333rem;
+  /*bottom: 28/75rem;*/
+  display: block;
+  height: 1.13333333rem;
+  width: 8.94666667rem;
+  border-radius: 0.56666667rem;
+  text-align: center;
+  line-height: 1.13333333rem;
+  color: #fff;
+  font-size: 0.53333333rem;
+  box-shadow: 0.06666667rem 0.13333333rem 0.2rem rgba(88, 197, 203, 0.2);
+  background: -webkit-linear-gradient(left, #58c5cb, #6be3a3);
+  /* Safari  5.1 - 6.0 */
+  background: -o-linear-gradient(right, #58c5cb, #6be3a3);
+  /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #58c5cb, #6be3a3);
+  /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #58c5cb, #6be3a3);
+  /* 标准的语法 */
+}
 #mask {
   z-index: 20;
   position: fixed;
@@ -474,27 +766,12 @@ body {
 #mask.notFinish .msg p.notFinish {
   display: block;
 }
-#mask .loading {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%); 
-  display: none;
-  text-align: center;
-}
-#mask .loading .o {
-  width: 0.26666667rem;
-  height: 0.26666667rem;
-  background: #fff;
-  transition: .2s all linear;
-
-}
-#mask.loading .loading {
+#mask.damn .msg {
   display: block;
-  font-weight: normal;
-  font-size: 0.4rem;
-  color: #fff; 
-} 
+}
+#mask.damn .msg p.damn {
+  display: block;
+}
 #mask .btn {
   width: 4.69333333rem;
   height: 1.2rem;
@@ -617,4 +894,22 @@ body {
 }
 #mask .envelope .bottom .btn {
   margin-top: 0.50666667rem;
+}
+#repairBtn > a {
+  color: #93d6da;
+}
+#mask.loading .loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#mask.loading .loading .o {
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  opacity: .8;
+  background: #fff;
+  transition: .6s all ease;
 }
